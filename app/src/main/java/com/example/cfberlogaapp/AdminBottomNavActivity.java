@@ -69,17 +69,6 @@ public class AdminBottomNavActivity extends AppCompatActivity {
         }
     };
 
-    public void setActionBarTitle(String title){
-        TextView textTitle = findViewById(R.id.textTitle);
-        textTitle.setText(title);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        finishAffinity();
-    }
-
 
 
     public void onTextSizeAppendClicked(View view){

@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
                 if(isUserAdmin(user)){
                     startActivity(new Intent(this, AdminBottomNavActivity.class));
                 }else{
-                    startActivity(new Intent(this,DrawerActivity.class));
+                    startActivity(new Intent(this, DefaultBottomNavActivity.class));
                 }
             }else{
                 startActivity(new Intent(this, LoginActivity.class));
