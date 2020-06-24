@@ -12,6 +12,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class TrainingActivity extends AppCompatActivity {
     private UserMaxes userMaxes;
     private String exrsz;
     private String exrszName;
+    private ImageButton backBtn;
 
 
     @Override
@@ -45,6 +47,8 @@ public class TrainingActivity extends AppCompatActivity {
 
         dateTextView = findViewById(R.id.dateTextView);
         progTextView = findViewById(R.id.progTextView);
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(onBackBtnClicked);
         getTrainingProgramm();
     }
 
@@ -52,8 +56,6 @@ public class TrainingActivity extends AppCompatActivity {
     private void getTrainingProgramm(){
         final String dateString = getIntent().getStringExtra("date");
         dateTextView.setText(dateString);
-
-
 
         final DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -267,5 +269,12 @@ public class TrainingActivity extends AppCompatActivity {
 
         return spannableProg;
     }
+
+    private ImageButton.OnClickListener onBackBtnClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
 
 }

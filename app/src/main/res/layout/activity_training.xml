@@ -6,21 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".TrainingActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Тренировка дня"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/actionBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:id="@+id/topTextView"/>
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/backBtn"
+            android:src="@drawable/ic_back"
+            android:background="@android:color/transparent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center_vertical" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Тренировка дня"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/topTextView"
+        app:layout_constraintTop_toBottomOf="@id/actionBarLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"

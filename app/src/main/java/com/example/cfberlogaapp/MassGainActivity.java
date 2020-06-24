@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ public class MassGainActivity extends AppCompatActivity {
     private ListView listView;
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth mAuth;
+    private ImageButton backBtn;
 
 
 
@@ -53,9 +56,17 @@ public class MassGainActivity extends AppCompatActivity {
         mDatabaseReference=FirebaseDatabase.getInstance().getReference();
         mAuth=FirebaseAuth.getInstance();
         listView = findViewById(R.id.listView);
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(onBackBtnClicked);
         setProgrammList();
     }
 
+    private ImageButton.OnClickListener onBackBtnClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
 
     private void setProgrammList(){
 
