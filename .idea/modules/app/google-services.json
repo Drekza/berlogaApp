@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "751252445471",
+    "firebase_url": "https://cfberlogaapp.firebaseio.com",
+    "project_id": "cfberlogaapp",
+    "storage_bucket": "cfberlogaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751252445471:android:e0dadec8b10a301e50b82a",
+        "android_client_info": {
+          "package_name": "com.example.cfberlogaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751252445471-7df6u8fqushsq3m0i6qqbloj4bco2ut2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cfberlogaapp",
+            "certificate_hash": "54cfe4c4b702d48e1b7d5c554011671ea3f11a3e"
+          }
+        },
+        {
+          "client_id": "751252445471-ef7tssum03t6mol0s8h9rgn869ip6l0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfNGn_-gCyFJ20ocLmI9B6kKaPe3xgu6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751252445471-ef7tssum03t6mol0s8h9rgn869ip6l0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

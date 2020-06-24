@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/menuTraining"
+            android:icon="@drawable/ic_training"
+            android:title="@string/training"/>
+
+        <item android:id="@+id/menuCabinet"
+            android:icon="@drawable/ic_cabinet"
+            android:title="@string/cabinet"/>
+    </group>
+
+    <item android:title="@string/other">
+        <menu>
+            <item android:id="@+id/menuSettings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/settings"/>
+        </menu>
+    </item>
+
+</menu>

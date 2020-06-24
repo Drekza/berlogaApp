@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AdminBottomNavActivity"
+    android:background="@color/lightBackground">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/horizontalScrollView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/boldTextBtn"
+                android:src="@drawable/ic_bold_text"
+                android:background="@color/buttonColor1"
+                android:onClick="onBoldTextClicked"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/italicTextBtn"
+                android:src="@drawable/ic_italic_text"
+                android:background="@color/buttonColor1"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:onClick="onItalicTextClicked"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:id="@+id/fontSizeIncreaseBtn"
+                android:src="@drawable/font_size_increase"
+                android:background="@color/buttonColor1"
+                android:onClick="onTextSizeAppendClicked"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:id="@+id/fontSizeDecreaseBtn"
+                android:src="@drawable/ic_font_size_decrease"
+                android:background="@color/buttonColor1"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:onClick="onTextSizeDecreaseClicked"/>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+        <jp.wasabeef.richeditor.RichEditor
+            android:id="@+id/richEditor"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/saveProgBtn"
+            android:text="Сохранить"
+            app:layout_constraintTop_toBottomOf="@id/richEditor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"
+            android:background="@color/buttonColor1"
+            android:onClick="onSaveChangesBtnClicked"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/adminInfoBtn"
+            app:layout_constraintTop_toTopOf="@id/saveProgBtn"
+            app:layout_constraintEnd_toEndOf="@id/richEditor"
+            android:src="@drawable/ic_baseline_info_24"
+            android:background="@android:color/transparent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

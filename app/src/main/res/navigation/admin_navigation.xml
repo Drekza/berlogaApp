@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/menuTraining">
+
+    <fragment
+        android:id="@+id/menuTraining"
+        android:name="com.example.cfberlogaapp.TrainingFragment"
+        android:label="Тренировки"
+        tools:layout="@layout/fragment_training" />
+    <fragment
+        android:id="@+id/menuCabinet"
+        android:name="com.example.cfberlogaapp.CabinetFragment"
+        android:label="Кабинет"
+        tools:layout="@layout/fragment_cabinet" />
+    <fragment
+        android:id="@+id/menuAdmin"
+        android:name="com.example.cfberlogaapp.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
+</navigation>
