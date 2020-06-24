@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(LoginActivity.this, "Authenticated successfully", Toast.LENGTH_LONG).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                if(user.getEmail().equals("paincsgo@yandex.ru")){
+                                if(user.getEmail().equals("paincsgo@yandex.ru") || user.getEmail().equals("Nothingow69@gmai.com")){
                                     startActivity(new Intent(LoginActivity.this, AdminBottomNavActivity.class));
                                 }else {
                                     startActivity(new Intent(LoginActivity.this, DrawerActivity.class));
