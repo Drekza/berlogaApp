@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if(user.getEmail().equals("paincsgo@yandex.ru") || user.getEmail().equals("nothingow69@gmail.com")){
                                     startActivity(new Intent(LoginActivity.this, AdminBottomNavActivity.class));
                                 }else {
-                                    startActivity(new Intent(LoginActivity.this, DrawerActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, DefaultBottomNavActivity.class));
                                 }
 
                             } else {
