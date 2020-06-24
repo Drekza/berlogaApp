@@ -64,7 +64,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public boolean isUserAdmin(FirebaseUser user){
         boolean isAdmin = false;
-        if(user.getEmail().equals("paincsgo@yandex.ru"))
+        if(user.getEmail().equals("paincsgo@yandex.ru") || user.getEmail().equals("nothingow69@gmail.com"))
             isAdmin = true;
         else
             isAdmin = false;
