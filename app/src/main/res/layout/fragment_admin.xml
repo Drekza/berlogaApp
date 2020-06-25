@@ -149,8 +149,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn2"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -158,15 +157,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn2"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -174,8 +171,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>
@@ -252,8 +248,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn3"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -261,15 +256,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn3"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -277,8 +270,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>
@@ -355,8 +347,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn4"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -364,15 +355,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn4"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -380,8 +369,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>
@@ -458,8 +446,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn5"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -467,15 +454,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn5"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -483,8 +468,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>
@@ -561,8 +545,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn6"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -570,15 +553,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn6"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -586,8 +567,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>
@@ -664,8 +644,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn7"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -673,15 +652,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn7"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -689,8 +666,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>

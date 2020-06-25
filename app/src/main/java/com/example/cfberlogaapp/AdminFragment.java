@@ -269,4 +269,13 @@ public class AdminFragment<string> extends Fragment {
             }
         });
     }
+
+    public void onSaveProgClicked(Button saveProgBtn, RichEditor editor){
+        saveProgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+    }
 }
