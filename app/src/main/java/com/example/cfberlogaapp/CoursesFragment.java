@@ -41,7 +41,7 @@ public class CoursesFragment extends Fragment {
     private ImageView.OnClickListener onMassGainImageViewClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(getContext(), MassGainActivity.class));
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MassGainFragment()).commit();
         }
     };
 }
