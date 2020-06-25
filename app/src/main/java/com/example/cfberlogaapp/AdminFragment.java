@@ -151,7 +151,7 @@ public class AdminFragment<string> extends Fragment {
         databaseDates = new ArrayList<>();
 
 
-        for(int i = 1; i <= 8; i++) {
+        for(int i = 2; i <= 9; i++) {
             calendar.set(Calendar.DAY_OF_WEEK, i);
             dates.add(sdf.format(calendar.getTime()));
             databaseDates.add(databaseSdf.format(calendar.getTime()));
