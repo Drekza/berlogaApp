@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,12 +66,22 @@ public class AdminBottomNavActivity extends AppCompatActivity {
                     selectedFragment = new AdminFragment();
                     break;
             }
+            getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, selectedFragment).commit();
+
             return true;
         }
     };
 
-
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 0) {
+            finishAffinity();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
 
     public void onTextSizeAppendClicked(View view){
         RichEditor mEditor = (RichEditor)findViewById(R.id.richEditor);
