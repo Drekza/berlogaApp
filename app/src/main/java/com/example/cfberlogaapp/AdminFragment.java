@@ -152,7 +152,7 @@ public class AdminFragment<string> extends Fragment {
         setOnBoldBtnClicked(boldTextBtn, richEditor);
         setOnItalicBtnClicked(italicTextBtn, richEditor);
         setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn, richEditor);
-        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn, richEditor);
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn, richEditor);
 
 
     }
@@ -241,22 +241,32 @@ public class AdminFragment<string> extends Fragment {
     }
 
     public void setOnItalicBtnClicked(ImageButton italicBtn, final RichEditor editor) {
-        isItalic = !isItalic;
-        richEditor.setItalic();
-        if(isItalic){
-            italicTextBtn.setBackgroundResource(R.color.buttonColor2);
-        }else{
-            italicTextBtn.setBackgroundResource(R.color.buttonColor1);
-        }
+        italicBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isItalic = !isItalic;
+                editor.setItalic();
+                if(isItalic){
+                    italicTextBtn.setBackgroundResource(R.color.buttonColor2);
+                }else{
+                    italicTextBtn.setBackgroundResource(R.color.buttonColor1);
+                }
+            }
+        });
+
     }
 
-    public void onFontDecreaseClicked(ImageButton fontDecreaseBtn, final RichEditor editor){
-        if(currentFontSize > 1){
-            currentFontSize -= 1;
-            editor.setFontSize(currentFontSize);
-        }else{
-            Toast.makeText(getActivity(), "Достигнут минимальный размер текста", Toast.LENGTH_SHORT).show();
-        }
+    public void setOnFontSizeDecreaseClicked(ImageButton fontDecreaseBtn, final RichEditor editor){
+        fontDecreaseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentFontSize > 1){
+                    currentFontSize -= 1;
+                    editor.setFontSize(currentFontSize);
+                }else{
+                    Toast.makeText(getActivity(), "Достигнут минимальный размер текста", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
-
 }
