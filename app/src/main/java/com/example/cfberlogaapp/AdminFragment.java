@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +35,7 @@ import java.util.Locale;
 
 import jp.wasabeef.richeditor.RichEditor;
 
-public class AdminFragment extends Fragment {
+public class AdminFragment<string> extends Fragment {
 
     private RichEditor richEditor, richEditor2, richEditor3, richEditor4,
                     richEditor5, richEditor6, richEditor7;
@@ -43,6 +46,8 @@ public class AdminFragment extends Fragment {
     private List<String> databaseDates;
     private int index;
     private int i;
+    private Spinner spinner;
+    private String[] option = {"Набор массы","Сброс веса"};
 
 
     public AdminFragment() {
@@ -59,6 +64,31 @@ public class AdminFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_admin, container, false);
+
+
+
+        spinner = rootView.findViewById(R.id.spinner);
+        ArrayAdapter aa = new ArrayAdapter(getContext(),R.layout.spinner_item,option);
+        aa.setDropDownViewResource(R.layout.spinner_item);
+        spinner.setAdapter(aa);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) {
+                    loadDataIntoRichEdits("MassGain");
+                }
+                if(position == 1){
+                    loadDataIntoRichEdits("LosingWeight");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         Button saveProgBtn = rootView.findViewById(R.id.saveProgBtn);
         saveProgBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +113,7 @@ public class AdminFragment extends Fragment {
             }
         });
         initView(rootView);
-        loadDataIntoRichEdits();
+        loadDataIntoRichEdits("MassGain");
 
         return rootView;
     }
@@ -114,7 +144,7 @@ public class AdminFragment extends Fragment {
         dateTextView7 = view.findViewById(R.id.dateTextView7);
     }
 
-    private void loadDataIntoRichEdits(){
+    private void loadDataIntoRichEdits(String course){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -146,7 +176,7 @@ public class AdminFragment extends Fragment {
         editors.add(richEditor7);
         index = 0;
 
-        Query mQuery = mDatabase.child("trainingProgramms").child("MassGain").limitToLast(8);
+        Query mQuery = mDatabase.child("trainingProgramms").child(course).limitToLast(8);
         mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
