@@ -35,9 +35,7 @@ public class AdminBottomNavActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private int currentFontSize = 3;
-    private boolean isBold = false;
-    private boolean isItalic = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,49 +82,6 @@ public class AdminBottomNavActivity extends AppCompatActivity {
         }
     }
 
-    public void onTextSizeAppendClicked(View view){
-        RichEditor mEditor = (RichEditor)findViewById(R.id.richEditor);
-        if(currentFontSize < 7){
-            currentFontSize += 1;
-            mEditor.setFontSize(currentFontSize);
-        }else{
-            Toast.makeText(this, "Достигнут максимальный размер текста", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    public void onBoldTextClicked (View view){
-        RichEditor mEditor = (RichEditor)findViewById(R.id.richEditor);
-        isBold = !isBold;
-        mEditor.setBold();
-        ImageButton boldTextBtn = findViewById(R.id.boldTextBtn);
-        if(isBold){
-            boldTextBtn.setBackgroundResource(R.color.buttonColor2);
-        }else{
-            boldTextBtn.setBackgroundResource(R.color.buttonColor1);
-        }
-
-    }
-
-    public void onItalicTextClicked(View view){
-        RichEditor mEditor = (RichEditor)findViewById(R.id.richEditor);
-        isItalic = !isItalic;
-        mEditor.setItalic();
-        ImageButton italicTextBtn = findViewById(R.id.italicTextBtn);
-        if(isItalic){
-            italicTextBtn.setBackgroundResource(R.color.buttonColor2);
-        }else{
-            italicTextBtn.setBackgroundResource(R.color.buttonColor1);
-        }
-    }
-
-    public void onTextSizeDecreaseClicked(View view){
-        RichEditor mEditor = (RichEditor)findViewById(R.id.richEditor);
-        if(currentFontSize > 1){
-            currentFontSize -= 1;
-            mEditor.setFontSize(currentFontSize);
-        }else{
-            Toast.makeText(this, "Достигнут минимальный размер текста", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

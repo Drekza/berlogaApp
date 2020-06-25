@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -43,9 +42,13 @@ public class AdminFragment<string> extends Fragment {
                  saveProgBtn6, saveProgBtn7;
     private TextView dateTextView, dateTextView2, dateTextView3, dateTextView4, dateTextView5,
             dateTextView6, dateTextView7;
+    private ImageButton boldTextBtn, italicTextBtn, fontSizeIncreaseBtn, fontSizeDecreaseBtn;
     private List<String> databaseDates;
     private Spinner spinner;
     private String[] option = {"Набор массы","Сброс веса"};
+    private int currentFontSize = 3;
+    private boolean isBold = false;
+    private boolean isItalic = false;
 
 
     public AdminFragment() {
@@ -140,6 +143,18 @@ public class AdminFragment<string> extends Fragment {
         dateTextView5 = view.findViewById(R.id.dateTextView5);
         dateTextView6 = view.findViewById(R.id.dateTextView6);
         dateTextView7 = view.findViewById(R.id.dateTextView7);
+
+        boldTextBtn = view.findViewById(R.id.boldTextBtn);
+        italicTextBtn = view.findViewById(R.id.italicTextBtn);
+        fontSizeIncreaseBtn = view.findViewById(R.id.fontSizeIncreaseBtn);
+        fontSizeDecreaseBtn = view.findViewById(R.id.fontSizeDecreaseBtn);
+
+        setOnBoldBtnClicked(boldTextBtn, richEditor);
+        setOnItalicBtnClicked(italicTextBtn, richEditor);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn, richEditor);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn, richEditor);
+
+
     }
 
     private void loadDataIntoRichEdits(String course){
@@ -194,6 +209,54 @@ public class AdminFragment<string> extends Fragment {
 
             }
         });
+    }
+
+    public void setOnFontSizeIncreaseClicked(ImageButton increaseBtn, final RichEditor editor){
+        increaseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(currentFontSize < 7){
+                    currentFontSize += 1;
+                    editor.setFontSize(currentFontSize);
+                }else{
+                    Toast.makeText(getActivity(), "Достигнут максимальный размер текста", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void setOnBoldBtnClicked(ImageButton boldBtn, final RichEditor editor){
+        boldBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isBold = !isBold;
+                editor.setBold();
+                if(isBold){
+                    boldTextBtn.setBackgroundResource(R.color.buttonColor2);
+                }else{
+                    boldTextBtn.setBackgroundResource(R.color.buttonColor1);
+                }
+            }
+        });
+    }
+
+    public void setOnItalicBtnClicked(ImageButton italicBtn, final RichEditor editor) {
+        isItalic = !isItalic;
+        richEditor.setItalic();
+        if(isItalic){
+            italicTextBtn.setBackgroundResource(R.color.buttonColor2);
+        }else{
+            italicTextBtn.setBackgroundResource(R.color.buttonColor1);
+        }
+    }
+
+    public void onFontDecreaseClicked(ImageButton fontDecreaseBtn, final RichEditor editor){
+        if(currentFontSize > 1){
+            currentFontSize -= 1;
+            editor.setFontSize(currentFontSize);
+        }else{
+            Toast.makeText(getActivity(), "Достигнут минимальный размер текста", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

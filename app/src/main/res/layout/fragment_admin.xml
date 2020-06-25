@@ -50,8 +50,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/boldTextBtn"
                             android:src="@drawable/ic_bold_text"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onBoldTextClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -59,15 +58,13 @@
                             android:src="@drawable/ic_italic_text"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onItalicTextClicked"/>
+                            android:layout_marginEnd="15dp" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
                             android:id="@+id/fontSizeIncreaseBtn"
                             android:src="@drawable/font_size_increase"
-                            android:background="@color/buttonColor1"
-                            android:onClick="onTextSizeAppendClicked"/>
+                            android:background="@color/buttonColor1" />
                         <ImageButton
                             android:layout_width="wrap_content"
                             android:layout_height="38dp"
@@ -75,8 +72,7 @@
                             android:src="@drawable/ic_font_size_decrease"
                             android:background="@color/buttonColor1"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:onClick="onTextSizeDecreaseClicked"/>
+                            android:layout_marginEnd="15dp" />
 
 
                     </LinearLayout>
