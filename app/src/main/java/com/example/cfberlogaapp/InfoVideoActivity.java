@@ -23,27 +23,30 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class InfoVideoActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
-    private String exrsz;
-    private String downloadUrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_video);
+        String videoUrl = getIntent().getStringExtra("videoUrl");
+        Matcher videoIdMatcher =Pattern.compile("(.*?)\\?v=(.*?)").matcher(videoUrl);
 
-        mDatabase =FirebaseDatabase.getInstance().getReference();
-        exrsz = getIntent().getStringExtra("exrsz");
-
-        final YouTubePlayerView videoView = findViewById(R.id.videoView);
-        getLifecycle().addObserver(videoView);
-        videoView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-            @Override
-            public void onReady(@NotNull YouTubePlayer youTubePlayer) {
-                youTubePlayer.loadVideo("KRntP-q_R9s", 0);
-            }
-        });
+        if(videoIdMatcher.find()){
+            String videoId = videoIdMatcher.group(2);
+            final YouTubePlayerView videoView = findViewById(R.id.videoView);
+            getLifecycle().addObserver(videoView);
+            videoView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                @Override
+                public void onReady(@NotNull YouTubePlayer youTubePlayer) {
+                    youTubePlayer.loadVideo("KRntP-q_R9s", 0);
+                }
+            });
+        }
     }
 }

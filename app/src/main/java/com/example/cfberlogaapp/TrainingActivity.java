@@ -119,7 +119,7 @@ public class TrainingActivity extends AppCompatActivity {
         for(String line : lines){
             final Matcher matcher =Pattern.compile("\\{(.*?)=(.*?)%\\}").matcher(line);
             final Matcher maxMatcher = Pattern.compile("\\{MAX=(.*?)\\}").matcher(line);
-            final Matcher infoMatcher = Pattern.compile("\\{info_(.*?)\\}").matcher(line);
+            final Matcher infoMatcher = Pattern.compile("\\*/(.*?)\\((.*?)\\)/\\*").matcher(line);
             if(userMaxes != null){
                 if(matcher.find()){
                     String string = matcher.group(1);
@@ -236,26 +236,20 @@ public class TrainingActivity extends AppCompatActivity {
                     spannableProg.setSpan(resultClickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
                 if(infoMatcher.find()){
-                    Matcher textToLinkMathcer = Pattern.compile("#(.*?)#").matcher(line);
-                    int startIndex = spannableProg.toString().indexOf("{info_"+infoMatcher.group(1)+"}");
-                    int endIndex = startIndex + ("{info_"+infoMatcher.group(1)+"}").length();
-                    spannableProg.replace(startIndex, endIndex, "");
-                    if(textToLinkMathcer.find()){
-                        int startIndexOfTextToReplace = spannableProg.toString().indexOf("#"+textToLinkMathcer.group(1)+"#");
-                        int endIndexOfTextToReplace = startIndexOfTextToReplace + ("#"+textToLinkMathcer.group(1)+"#").length();
-                        spannableProg.replace(startIndexOfTextToReplace, endIndexOfTextToReplace, textToLinkMathcer.group(1));
-                        int startIndexOfTextToLink = spannableProg.toString().indexOf(textToLinkMathcer.group(1));
-                        int endIndexOfTextToLink = startIndexOfTextToLink + textToLinkMathcer.group(1).length();
-                        ClickableSpan infoClickableSpan = new ClickableSpan() {
-                            @Override
-                            public void onClick(@NonNull View widget) {
-                                Intent intent = new Intent(TrainingActivity.this, InfoVideoActivity.class);
-                                intent.putExtra("exrsz", infoMatcher.group(1));
-                                startActivity(intent);
-                            }
-                        };
-                        spannableProg.setSpan(infoClickableSpan, startIndexOfTextToLink, endIndexOfTextToLink, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    }
+                    int startIndex = spannableProg.toString().indexOf("*/"+infoMatcher.group(1) + "(" + infoMatcher.group(2) + ")/*");
+                    int endIndex = startIndex + ("*/"+infoMatcher.group(1) + "(" + infoMatcher.group(2) + ")/*").length();
+                    spannableProg.replace(startIndex, endIndex, infoMatcher.group(1));
+                    startIndex = spannableProg.toString().indexOf(infoMatcher.group(1));
+                    endIndex = startIndex + infoMatcher.group(1).length();
+                    ClickableSpan clickableSpan = new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            Intent intent = new Intent(TrainingActivity.this, InfoVideoActivity.class);
+                            intent.putExtra("videoUrl", infoMatcher.group(2));
+                            startActivity(intent);
+                        }
+                    };
+                    spannableProg.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
                 }
             }else{
                 if(matcher.find()){
