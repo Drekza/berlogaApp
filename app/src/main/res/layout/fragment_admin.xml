@@ -7,86 +7,743 @@
     tools:context=".AdminBottomNavActivity"
     android:background="@color/lightBackground">
 
-    <HorizontalScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/horizontalScrollView">
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/boldTextBtn"
-                android:src="@drawable/ic_bold_text"
-                android:background="@color/buttonColor1"
-                android:onClick="onBoldTextClicked"/>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/italicTextBtn"
-                android:src="@drawable/ic_italic_text"
-                android:background="@color/buttonColor1"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:onClick="onItalicTextClicked"/>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="38dp"
-                android:id="@+id/fontSizeIncreaseBtn"
-                android:src="@drawable/font_size_increase"
-                android:background="@color/buttonColor1"
-                android:onClick="onTextSizeAppendClicked"/>
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="38dp"
-                android:id="@+id/fontSizeDecreaseBtn"
-                android:src="@drawable/ic_font_size_decrease"
-                android:background="@color/buttonColor1"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:onClick="onTextSizeDecreaseClicked"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
 
 
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Понедельник"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn"
+                    android:layout_alignRight="@id/richEditor"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView2">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn2"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn2"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn2"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn2"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Вторник"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView2"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout2"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn2"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor2"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn2"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn2"
+                    android:layout_alignRight="@id/richEditor2"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView3">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn3"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn3"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn3"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn3"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView3">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Среда"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView3"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor3"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout3"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn3"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor3"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn3"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn3"
+                    android:layout_alignRight="@id/richEditor3"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView4">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn4"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn4"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn4"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn4"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView4">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Четверг"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView4"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor4"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout4"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn4"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor4"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn4"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn4"
+                    android:layout_alignRight="@id/richEditor4"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView5">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn5"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn5"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn5"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn5"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView5">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Пятница"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView5"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor5"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout5"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn5"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor5"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn5"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn5"
+                    android:layout_alignRight="@id/richEditor5"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView6">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn6"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn6"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn6"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn6"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView6">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Суббота"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView6"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor6"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout6"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn6"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor6"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn6"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn6"
+                    android:layout_alignRight="@id/richEditor6"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/horizontalScrollView7">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/boldTextBtn7"
+                            android:src="@drawable/ic_bold_text"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onBoldTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/italicTextBtn7"
+                            android:src="@drawable/ic_italic_text"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onItalicTextClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeIncreaseBtn7"
+                            android:src="@drawable/font_size_increase"
+                            android:background="@color/buttonColor1"
+                            android:onClick="onTextSizeAppendClicked"/>
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:id="@+id/fontSizeDecreaseBtn7"
+                            android:src="@drawable/ic_font_size_decrease"
+                            android:background="@color/buttonColor1"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:onClick="onTextSizeDecreaseClicked"/>
+
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/dateLinearLayout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/horizontalScrollView7">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Воскресенье"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/dateTextView7"/>
+                </LinearLayout>
+
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/richEditor7"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/dateLinearLayout7"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/saveProgBtn7"
+                    android:text="Сохранить"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/buttonColor1"
+                    android:layout_below="@id/richEditor7"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/adminInfoBtn7"
+                    android:src="@drawable/ic_baseline_info_24"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@id/saveProgBtn7"
+                    android:layout_alignRight="@id/richEditor7"/>
+            </RelativeLayout>
         </LinearLayout>
-    </HorizontalScrollView>
 
-        <jp.wasabeef.richeditor.RichEditor
-            android:id="@+id/richEditor"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/saveProgBtn"
-            android:text="Сохранить"
-            app:layout_constraintTop_toBottomOf="@id/richEditor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="15dp"
-            android:background="@color/buttonColor1"
-            android:onClick="onSaveChangesBtnClicked"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/adminInfoBtn"
-            app:layout_constraintTop_toTopOf="@id/saveProgBtn"
-            app:layout_constraintEnd_toEndOf="@id/richEditor"
-            android:src="@drawable/ic_baseline_info_24"
-            android:background="@android:color/transparent"/>
+
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
