@@ -42,7 +42,13 @@ public class AdminFragment<string> extends Fragment {
                  saveProgBtn6, saveProgBtn7;
     private TextView dateTextView, dateTextView2, dateTextView3, dateTextView4, dateTextView5,
             dateTextView6, dateTextView7;
-    private ImageButton boldTextBtn, italicTextBtn, fontSizeIncreaseBtn, fontSizeDecreaseBtn;
+    private ImageButton boldTextBtn, italicTextBtn, fontSizeIncreaseBtn, fontSizeDecreaseBtn,
+            boldTextBtn2, italicTextBtn2, fontSizeIncreaseBtn2, fontSizeDecreaseBtn2,
+            boldTextBtn3, italicTextBtn3, fontSizeIncreaseBtn3, fontSizeDecreaseBtn3,
+            boldTextBtn4, italicTextBtn4, fontSizeIncreaseBtn4, fontSizeDecreaseBtn4,
+            boldTextBtn5, italicTextBtn5, fontSizeIncreaseBtn5, fontSizeDecreaseBtn5,
+            boldTextBtn6, italicTextBtn6, fontSizeIncreaseBtn6, fontSizeDecreaseBtn6,
+            boldTextBtn7, italicTextBtn7, fontSizeIncreaseBtn7, fontSizeDecreaseBtn7;
     private List<String> databaseDates;
     private Spinner spinner;
     private String[] option = {"Набор массы","Сброс веса"};
@@ -145,15 +151,62 @@ public class AdminFragment<string> extends Fragment {
         dateTextView7 = view.findViewById(R.id.dateTextView7);
 
         boldTextBtn = view.findViewById(R.id.boldTextBtn);
+        boldTextBtn2 = view.findViewById(R.id.boldTextBtn2);
+        boldTextBtn3 = view.findViewById(R.id.boldTextBtn3);
+        boldTextBtn4 = view.findViewById(R.id.boldTextBtn4);
+        boldTextBtn5 = view.findViewById(R.id.boldTextBtn5);
+        boldTextBtn6 = view.findViewById(R.id.boldTextBtn6);
+        boldTextBtn7 = view.findViewById(R.id.boldTextBtn7);
         italicTextBtn = view.findViewById(R.id.italicTextBtn);
+        italicTextBtn2 = view.findViewById(R.id.italicTextBtn2);
+        italicTextBtn3 = view.findViewById(R.id.italicTextBtn3);
+        italicTextBtn4 = view.findViewById(R.id.italicTextBtn4);
+        italicTextBtn5 = view.findViewById(R.id.italicTextBtn5);
+        italicTextBtn6 = view.findViewById(R.id.italicTextBtn6);
+        italicTextBtn7 = view.findViewById(R.id.italicTextBtn7);
         fontSizeIncreaseBtn = view.findViewById(R.id.fontSizeIncreaseBtn);
+        fontSizeIncreaseBtn2 = view.findViewById(R.id.fontSizeIncreaseBtn2);
+        fontSizeIncreaseBtn3 = view.findViewById(R.id.fontSizeIncreaseBtn3);
+        fontSizeIncreaseBtn4 = view.findViewById(R.id.fontSizeIncreaseBtn4);
+        fontSizeIncreaseBtn5 = view.findViewById(R.id.fontSizeIncreaseBtn5);
+        fontSizeIncreaseBtn6 = view.findViewById(R.id.fontSizeIncreaseBtn6);
+        fontSizeIncreaseBtn7 = view.findViewById(R.id.fontSizeIncreaseBtn7);
         fontSizeDecreaseBtn = view.findViewById(R.id.fontSizeDecreaseBtn);
+        fontSizeDecreaseBtn2 = view.findViewById(R.id.fontSizeDecreaseBtn2);
+        fontSizeDecreaseBtn3 = view.findViewById(R.id.fontSizeDecreaseBtn3);
+        fontSizeDecreaseBtn4 = view.findViewById(R.id.fontSizeDecreaseBtn4);
+        fontSizeDecreaseBtn5 = view.findViewById(R.id.fontSizeDecreaseBtn5);
+        fontSizeDecreaseBtn6 = view.findViewById(R.id.fontSizeDecreaseBtn6);
+        fontSizeDecreaseBtn7 = view.findViewById(R.id.fontSizeDecreaseBtn7);
 
         setOnBoldBtnClicked(boldTextBtn, richEditor);
+        setOnBoldBtnClicked(boldTextBtn2, richEditor2);
+        setOnBoldBtnClicked(boldTextBtn3, richEditor3);
+        setOnBoldBtnClicked(boldTextBtn4, richEditor4);
+        setOnBoldBtnClicked(boldTextBtn5, richEditor5);
+        setOnBoldBtnClicked(boldTextBtn6, richEditor6);
+        setOnBoldBtnClicked(boldTextBtn7, richEditor7);
         setOnItalicBtnClicked(italicTextBtn, richEditor);
+        setOnItalicBtnClicked(italicTextBtn2, richEditor2);
+        setOnItalicBtnClicked(italicTextBtn3, richEditor3);
+        setOnItalicBtnClicked(italicTextBtn4, richEditor4);
+        setOnItalicBtnClicked(italicTextBtn5, richEditor5);
+        setOnItalicBtnClicked(italicTextBtn6, richEditor6);
+        setOnItalicBtnClicked(italicTextBtn7, richEditor7);
         setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn, richEditor);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn2, richEditor2);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn3, richEditor3);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn4, richEditor4);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn5, richEditor5);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn6, richEditor6);
+        setOnFontSizeIncreaseClicked(fontSizeIncreaseBtn7, richEditor7);
         setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn, richEditor);
-
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn2, richEditor2);
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn3, richEditor3);
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn4, richEditor4);
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn5, richEditor5);
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn6, richEditor6);
+        setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn7, richEditor7);
 
     }
 
