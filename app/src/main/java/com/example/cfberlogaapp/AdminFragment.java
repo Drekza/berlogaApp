@@ -44,8 +44,6 @@ public class AdminFragment<string> extends Fragment {
     private TextView dateTextView, dateTextView2, dateTextView3, dateTextView4, dateTextView5,
             dateTextView6, dateTextView7;
     private List<String> databaseDates;
-    private int index;
-    private int i;
     private Spinner spinner;
     private String[] option = {"Набор массы","Сброс веса"};
 
@@ -174,17 +172,19 @@ public class AdminFragment<string> extends Fragment {
         editors.add(richEditor5);
         editors.add(richEditor6);
         editors.add(richEditor7);
-        index = 0;
+        for(RichEditor editor : editors) {
+            editor.setHtml("");
+        }
 
         Query mQuery = mDatabase.child("trainingProgramms").child(course).limitToLast(8);
         mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if(snapshot.getKey().equals(databaseDates.get(index))){
+                    if(databaseDates.contains(snapshot.getKey())){
+                        int index = databaseDates.indexOf(snapshot.getKey());
                         String prog = snapshot.getValue(String.class);
                         editors.get(index).setHtml(prog);
-                        index = (index < 7) ? +1 : index;
                     }
                 }
             }
