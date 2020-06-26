@@ -25,6 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,9 +76,22 @@ public class AdminFragment<string> extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_admin, container, false);
 
+        initView(rootView);
 
 
-        spinner = rootView.findViewById(R.id.spinner);
+        return rootView;
+    }
+
+    private void initView(View view){
+        ImageButton adminInfoBtn = view.findViewById(R.id.adminInfoBtn);
+        adminInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AdminInfoActivity.class));
+            }
+        });
+
+        spinner = view.findViewById(R.id.spinner);
         ArrayAdapter aa = new ArrayAdapter(getContext(),R.layout.spinner_item,option);
         aa.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(aa);
@@ -95,37 +112,6 @@ public class AdminFragment<string> extends Fragment {
             }
         });
 
-
-
-        Button saveProgBtn = rootView.findViewById(R.id.saveProgBtn);
-        saveProgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RichEditor mEditor = rootView.findViewById(R.id.richEditor);
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                Date date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-                String currentDate = sdf.format(date);
-                mDatabase.child("trainingProgramms").child(currentDate).setValue(mEditor.getHtml());
-                Toast.makeText(getActivity(), "Сохранено", Toast.LENGTH_SHORT).show();
-                mEditor.undo();
-            }
-        });
-
-        ImageButton adminInfoBtn = rootView.findViewById(R.id.adminInfoBtn);
-        adminInfoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AdminInfoActivity.class));
-            }
-        });
-        initView(rootView);
-        loadDataIntoRichEdits("MassGain");
-
-        return rootView;
-    }
-
-    private void initView(View view){
         richEditor = view.findViewById(R.id.richEditor);
         richEditor2 = view.findViewById(R.id.richEditor2);
         richEditor3 = view.findViewById(R.id.richEditor3);
@@ -208,7 +194,19 @@ public class AdminFragment<string> extends Fragment {
         setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn6, richEditor6);
         setOnFontSizeDecreaseClicked(fontSizeDecreaseBtn7, richEditor7);
 
+
+        setOnSaveProgClicked(saveProgBtn, richEditor, dateTextView);
+        setOnSaveProgClicked(saveProgBtn2, richEditor2, dateTextView2);
+        setOnSaveProgClicked(saveProgBtn3, richEditor3, dateTextView3);
+        setOnSaveProgClicked(saveProgBtn4, richEditor4, dateTextView4);
+        setOnSaveProgClicked(saveProgBtn5, richEditor5, dateTextView5);
+        setOnSaveProgClicked(saveProgBtn6, richEditor6, dateTextView6);
+        setOnSaveProgClicked(saveProgBtn7, richEditor7, dateTextView7);
+
+        loadDataIntoRichEdits("MassGain");
     }
+
+
 
     private void loadDataIntoRichEdits(String course){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -219,7 +217,7 @@ public class AdminFragment<string> extends Fragment {
         databaseDates = new ArrayList<>();
 
 
-        for(int i = 2; i <= 9; i++) {
+        for(int i = 1; i <= 7; i++) {
             calendar.set(Calendar.DAY_OF_WEEK, i);
             dates.add(sdf.format(calendar.getTime()));
             databaseDates.add(databaseSdf.format(calendar.getTime()));
@@ -240,19 +238,24 @@ public class AdminFragment<string> extends Fragment {
         editors.add(richEditor5);
         editors.add(richEditor6);
         editors.add(richEditor7);
-        for(RichEditor editor : editors) {
-            editor.setHtml("");
-        }
+
 
         Query mQuery = mDatabase.child("trainingProgramms").child(course).limitToLast(8);
         mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Integer> filledEditors = new ArrayList<>();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     if(databaseDates.contains(snapshot.getKey())){
                         int index = databaseDates.indexOf(snapshot.getKey());
                         String prog = snapshot.getValue(String.class);
                         editors.get(index).setHtml(prog);
+                        filledEditors.add(index);
+                    }
+                }
+                for(int i = 0; i<editors.size()-1; i++){
+                    if(!filledEditors.contains(i)){
+                        editors.get(i).setHtml("");
                     }
                 }
             }
@@ -323,11 +326,55 @@ public class AdminFragment<string> extends Fragment {
         });
     }
 
-    public void onSaveProgClicked(Button saveProgBtn, RichEditor editor){
+    public void setOnSaveProgClicked(Button saveProgBtn, final RichEditor editor, final TextView dateTextView){
+
+        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
         saveProgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Toast.makeText(getActivity(), "PENS", Toast.LENGTH_SHORT).show();
+                Date date =null;
+                try {
+                    date=dateFormat.parse(dateTextView.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                final String databaseString = sdf.format(date);
+                ValueEventListener eventListener;
+                int id =(int) spinner.getSelectedItemId();
+                switch(id){
+                    case 0:
+                        eventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                mDatabase.child("trainingProgramms").child("MassGain").child(databaseString).setValue(editor.getHtml());
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        };
+                        mDatabase.addListenerForSingleValueEvent(eventListener);
+                        break;
+                    case 1:
+                        eventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                mDatabase.child("trainingProgramms").child("LosingWeight").child(databaseString).setValue(editor.getHtml());
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        };
+                        mDatabase.addListenerForSingleValueEvent(eventListener);
+                        break;
+                }
             }
         });
     }
