@@ -82,14 +82,21 @@ public class AdminFragment<string> extends Fragment {
         return rootView;
     }
 
-    private void initView(View view){
+    private void initView(View view) {
         ImageButton adminInfoBtn = view.findViewById(R.id.adminInfoBtn);
-        adminInfoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AdminInfoActivity.class));
-            }
-        });
+        adminInfoBtn.setOnClickListener(OnInfoAdminClicked);
+        ImageButton adminInfoBtn2 = view.findViewById(R.id.adminInfoBtn2);
+        adminInfoBtn2.setOnClickListener(OnInfoAdminClicked);
+        ImageButton adminInfoBtn3 = view.findViewById(R.id.adminInfoBtn3);
+        adminInfoBtn3.setOnClickListener(OnInfoAdminClicked);
+        ImageButton adminInfoBtn4 = view.findViewById(R.id.adminInfoBtn4);
+        adminInfoBtn4.setOnClickListener(OnInfoAdminClicked);
+        ImageButton adminInfoBtn5 = view.findViewById(R.id.adminInfoBtn5);
+        adminInfoBtn5.setOnClickListener(OnInfoAdminClicked);
+        ImageButton adminInfoBtn6 = view.findViewById(R.id.adminInfoBtn6);
+        adminInfoBtn6.setOnClickListener(OnInfoAdminClicked);
+        ImageButton adminInfoBtn7 = view.findViewById(R.id.adminInfoBtn7);
+        adminInfoBtn7.setOnClickListener(OnInfoAdminClicked);
 
         spinner = view.findViewById(R.id.spinner);
         ArrayAdapter aa = new ArrayAdapter(getContext(),R.layout.spinner_item,option);
@@ -111,6 +118,7 @@ public class AdminFragment<string> extends Fragment {
 
             }
         });
+
 
         richEditor = view.findViewById(R.id.richEditor);
         richEditor2 = view.findViewById(R.id.richEditor2);
@@ -206,7 +214,12 @@ public class AdminFragment<string> extends Fragment {
         loadDataIntoRichEdits("MassGain");
     }
 
-
+    private ImageButton.OnClickListener OnInfoAdminClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new AdminInfoFragment()).addToBackStack(null).commit();
+        }
+    };
 
     private void loadDataIntoRichEdits(String course){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
