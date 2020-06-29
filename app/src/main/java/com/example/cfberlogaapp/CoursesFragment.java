@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 public class CoursesFragment extends Fragment {
 
-
+    private ImageView massGainImageView, weightLossImageView;
+    private ProgressBar progressBar;
 
 
     public CoursesFragment() {
@@ -32,9 +34,12 @@ public class CoursesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_courses, container, false);
-        ImageView massGainImageView = rootView.findViewById(R.id.naborMassiImg);
+        massGainImageView = rootView.findViewById(R.id.naborMassiImg);
+        weightLossImageView = rootView.findViewById(R.id.sbrosVesaImg);
+        progressBar = rootView.findViewById(R.id.progressBar);
         massGainImageView.setOnClickListener(onMassGainImageViewClicked);
-
+        progressBar.setVisibility(View.VISIBLE);
+        loadPictures();
         return rootView;
     }
 
@@ -44,4 +49,10 @@ public class CoursesFragment extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MassGainFragment()).addToBackStack(null).commit();
         }
     };
+
+    public void loadPictures(){
+        massGainImageView.setImageDrawable(getResources().getDrawable(R.drawable.nabor_massi));
+        weightLossImageView.setImageDrawable(getResources().getDrawable(R.drawable.sbros_vesa));
+        progressBar.setVisibility(View.INVISIBLE);
+    }
 }
