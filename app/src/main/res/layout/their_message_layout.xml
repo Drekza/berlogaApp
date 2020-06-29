@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="10dp"
+    android:paddingRight="60dp"
+    android:paddingLeft="15dp"
+    android:clipToPadding="false">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/userPic"
+        app:riv_oval="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/userPic"
+        android:id="@+id/userNameTextView"
+        android:text=""
+        android:textSize="14sp"
+        android:layout_alignTop="@id/userPic"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/messageTextView"
+        android:background="@drawable/their_message"
+        android:textColor="#000"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:layout_toRightOf="@id/userPic"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/userNameTextView"
+        android:text="Message"/>
+</RelativeLayout>

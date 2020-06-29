@@ -158,7 +158,4 @@ public class MassGainFragment extends Fragment {
             return row;
         }
     }
-
-
-
 }

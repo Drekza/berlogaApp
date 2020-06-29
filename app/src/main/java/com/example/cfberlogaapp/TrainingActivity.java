@@ -12,6 +12,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class TrainingActivity extends AppCompatActivity {
     private String exrsz;
     private String exrszName;
     private ImageButton backBtn;
+    private Button chatBtn;
 
 
     @Override
@@ -49,9 +51,20 @@ public class TrainingActivity extends AppCompatActivity {
         progTextView = findViewById(R.id.progTextView);
         backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(onBackBtnClicked);
+        chatBtn = findViewById(R.id.chatBtn);
+        chatBtn.setOnClickListener(onChatBtnClicked);
         getTrainingProgramm();
     }
 
+    public Button.OnClickListener onChatBtnClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String date = getIntent().getStringExtra("date");
+            Intent intent = new Intent(TrainingActivity.this, ChatActivity.class);
+            intent.putExtra("date", date);
+            startActivity(intent);
+        }
+    };
 
     private void getTrainingProgramm(){
         final String dateString = getIntent().getStringExtra("date");

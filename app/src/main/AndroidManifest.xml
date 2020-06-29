@@ -11,10 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TrainingActivity"
+        <activity android:name=".ChatActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MassGainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".TrainingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MassGainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InfoVideoActivity"
             android:configChanges="orientation|screenSize"
@@ -30,8 +34,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar.Launcher"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
