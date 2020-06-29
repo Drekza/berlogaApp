@@ -62,6 +62,7 @@ public class TrainingActivity extends AppCompatActivity {
             String date = getIntent().getStringExtra("date");
             Intent intent = new Intent(TrainingActivity.this, ChatActivity.class);
             intent.putExtra("date", date);
+            intent.putExtra("course", "MassGain");
             startActivity(intent);
         }
     };

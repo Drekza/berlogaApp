@@ -58,7 +58,7 @@ public class MessageAdapter extends BaseAdapter {
         }else{
             convertView = inflater.inflate(R.layout.their_message_layout, null);
             TextView messageTextView = convertView.findViewById(R.id.messageTextView);
-            TextView userNameTextView = convertView.findViewById(R.id.nameEditText);
+            TextView userNameTextView = convertView.findViewById(R.id.userNameTextView);
             RoundedImageView userImageView = convertView.findViewById(R.id.userPic);
             messageTextView.setText(message.getMessageText());
             userNameTextView.setText(message.getUsersName());

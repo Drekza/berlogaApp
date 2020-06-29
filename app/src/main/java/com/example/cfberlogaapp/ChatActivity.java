@@ -18,10 +18,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -53,6 +55,7 @@ public class ChatActivity extends AppCompatActivity {
         listView.setAdapter(messageAdapter);
         ImageButton backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(onBackBtnClicked);
+        loadChat();
     }
 
     public ImageButton.OnClickListener onBackBtnClicked = new View.OnClickListener() {
@@ -90,9 +93,8 @@ public class ChatActivity extends AppCompatActivity {
 
                             SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
                             String databaseDate = databaseDateFormat.format(date);
-
-                            mDatabase.child("chats").child("MassGain").child(String.valueOf(dayOfWeek)).push().setValue(message);
-                            messageAdapter.addMessage(message);
+                            String course = getIntent().getStringExtra("course");
+                            mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek)).push().setValue(message);
 
                         } catch (ParseException e) {
                             e.printStackTrace();
@@ -120,9 +122,27 @@ public class ChatActivity extends AppCompatActivity {
             int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.addValueEventListener(new ValueEventListener() {
+            String course = getIntent().getStringExtra("course");
+            Query mQuery = mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek));
+            mQuery.addChildEventListener(new ChildEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    Message message = dataSnapshot.getValue(Message.class);
+                    messageAdapter.addMessage(message);
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 }
 
