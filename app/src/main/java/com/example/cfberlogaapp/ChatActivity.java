@@ -91,7 +91,7 @@ public class ChatActivity extends AppCompatActivity {
                             SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
                             String databaseDate = databaseDateFormat.format(date);
 
-                            mDatabase.child("chats").child("MassGain").child(databaseDate).child(String.valueOf(dayOfWeek)).push().setValue(message);
+                            mDatabase.child("chats").child("MassGain").child(String.valueOf(dayOfWeek)).push().setValue(message);
                             messageAdapter.addMessage(message);
 
                         } catch (ParseException e) {
@@ -105,11 +105,36 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-
             }
         }
     };
+
+
+    public void loadChat(){
+        String stringDate = getIntent().getStringExtra("date");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        try{
+            Date date = dateFormat.parse(stringDate);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
+
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+
+    }
 
 }
