@@ -44,21 +44,24 @@
             android:layout_above="@+id/messageRelativeLayout"
             android:divider="#fff"
             android:listSelector="@android:color/transparent"/>
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
             android:id="@+id/messageRelativeLayout">
+
             <EditText
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/messageEditText"/>
+                android:id="@+id/messageEditText"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
             <ImageButton
+                android:id="@+id/sendMessageBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_send_24"
-                android:layout_toRightOf="@id/messageEditText"
-                android:id="@+id/sendMessageBtn"/>
-        </RelativeLayout>
+                android:src="@drawable/ic_baseline_send_24" />
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
