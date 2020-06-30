@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -19,11 +20,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,11 +35,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import static android.app.Activity.RESULT_OK;
 
 public class CabinetFragment extends Fragment {
 
@@ -54,10 +61,14 @@ public class CabinetFragment extends Fragment {
             hipEditText, hipsEditText, backSquatEditText, frontSquatEditText, overheadEditText, deadliftEditText,
             pressEditText, benchPressEditText, pullupsEditText, c2bPullUpsEditText, hsPullUpsEditText, ringsDipsEditText, t2bEditText;
     private ImageView profilePictureView;
-    private ImageButton weightHistoryBtn, shouldersHistoryBtn, chestHistoryBtn, bicepsHistoryBtn, waistHistoryBtn,
+    private ImageButton editBtn, weightHistoryBtn, shouldersHistoryBtn, chestHistoryBtn, bicepsHistoryBtn, waistHistoryBtn,
             hipHistoryBtn, hipsHistoryBtn, backSquatHistoryBtn, frontSquatHistoryBtn, overheadHistoryBtn,
             deadliftHistoryBtn, pressHistoryBtn, benchPressHistoryBtn, pullUpsHistoryBtn, c2bHistoryBtn,
             hsPullUpsHistoryBtn, ringsDipsHistoryBtn, t2bHistoryBtn;
+
+    private Uri imageUri;
+    private FirebaseStorage mStorage;
+    private StorageReference mStorageReference;
 
 
 
@@ -67,6 +78,8 @@ public class CabinetFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance();
+        mStorageReference = mStorage.getReference();
     }
 
     @Override
@@ -141,10 +154,67 @@ public class CabinetFragment extends Fragment {
         t2bHistoryBtn = rootView.findViewById(R.id.t2bHistoryBtn);
         setOnHistoryBtnClickListener(t2bHistoryBtn, "t2b");
 
+
+        editBtn = rootView.findViewById(R.id.editBtn);
+        editBtn.setOnClickListener(onEditBtnClicked);
+
         loadData();
 
 
         return rootView;
+    }
+
+    public ImageButton.OnClickListener onEditBtnClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            choosePicture();
+        }
+    };
+
+    public void choosePicture(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
+            imageUri = data.getData();
+            profilePictureView.setImageURI(imageUri);
+            uploadPicture();
+        }
+    }
+
+    public void uploadPicture(){
+        final String uId = mAuth.getUid();
+        final StorageReference profilePicturesStorageReference = mStorageReference.child("profilePictures/" + uId);
+        final ProgressBar progressBar = new ProgressBar(getContext());
+        progressBar.setVisibility(View.VISIBLE);
+        profilePicturesStorageReference.putFile(imageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(getContext(), "Фотография успешно обновлена", Toast.LENGTH_LONG).show();
+                        mDatabase.child("users").child(uId).child("profilePictureUrl").setValue("gs://cfberlogaapp.appspot.com" + profilePicturesStorageReference.getPath());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Ошибка при загрузке фотографии", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        progressBar.setProgress((int)progress);
+                    }
+                });
     }
 
     public void hideSoftKeyboard (Activity activity, View view)
