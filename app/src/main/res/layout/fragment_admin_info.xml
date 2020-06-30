@@ -50,7 +50,8 @@
 \nОтжимания в стойке на руках {hs_push_ups=80%}
 \nОтжимания на кольцах {rings_dips=80%}
 \nНоски к перекладине {t2b=80%}
-\n Если нужно найти максимум упражнения, то пишешь {MAX=название_упражнения}"
+\nМаксимум упражнения: {MAX=название_упражнения}\n
+Вставка видео: */Название упражнения (Ссылка на видео)/*"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/actionBarLayout"
         app:layout_constraintStart_toStartOf="parent"
