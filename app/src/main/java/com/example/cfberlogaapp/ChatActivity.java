@@ -96,7 +96,7 @@ public class ChatActivity extends AppCompatActivity {
                             String databaseDate = databaseDateFormat.format(date);
                             String course = getIntent().getStringExtra("course");
                             mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek)).push().setValue(message);
-
+                            messageEditText.setText("");
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
