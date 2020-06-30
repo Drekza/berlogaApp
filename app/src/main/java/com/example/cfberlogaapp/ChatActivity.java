@@ -79,6 +79,7 @@ public class ChatActivity extends AppCompatActivity {
                         FirebaseAuth mAuth = FirebaseAuth.getInstance();
                         String userID = mAuth.getUid();
                         String userName = dataSnapshot.child("users").child(userID).child("name").getValue(String.class);
+                        String profilePictureUrl = dataSnapshot.child("users").child(userID).child("profilePictureUrl").getValue(String.class);
 
                         String stringDate = getIntent().getStringExtra("date");
                         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -89,7 +90,7 @@ public class ChatActivity extends AppCompatActivity {
                             calendar.setTime(date);
                             int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
 
-                            Message message = new Message(messageEditText.getText().toString(), stringDate, userName, userID);
+                            Message message = new Message(messageEditText.getText().toString(), stringDate, userName, userID, profilePictureUrl);
 
                             SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
                             String databaseDate = databaseDateFormat.format(date);

@@ -1,6 +1,7 @@
 package com.example.cfberlogaapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -59,7 +64,14 @@ public class MessageAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.their_message_layout, null);
             TextView messageTextView = convertView.findViewById(R.id.messageTextView);
             TextView userNameTextView = convertView.findViewById(R.id.userNameTextView);
-            RoundedImageView userImageView = convertView.findViewById(R.id.userPic);
+            final RoundedImageView userImageView = convertView.findViewById(R.id.userPic);
+            StorageReference storageReference =FirebaseStorage.getInstance().getReferenceFromUrl(message.getProfilePictureUrl());
+            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Glide.with(context).load(uri).into(userImageView);
+                }
+            });
             messageTextView.setText(message.getMessageText());
             userNameTextView.setText(message.getUsersName());
         }

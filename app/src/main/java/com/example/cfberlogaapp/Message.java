@@ -7,12 +7,14 @@ public class Message {
     public String date;
     public String usersName;
     public String userID;
+    public String profilePictureUrl;
 
-    public Message(String messageText, String date, String usersName, String userID) {
+    public Message(String messageText, String date, String usersName, String userID, String profilePictureUrl) {
         this.messageText=messageText;
         this.date=date;
         this.usersName=usersName;
         this.userID=userID;
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     public Message(String messageText){
@@ -60,4 +62,6 @@ public class Message {
     public void setUserID(String userID) {
         this.userID=userID;
     }
+
+    public String getProfilePictureUrl(){return profilePictureUrl;}
 }
