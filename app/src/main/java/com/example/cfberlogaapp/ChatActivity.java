@@ -72,42 +72,28 @@ public class ChatActivity extends AppCompatActivity {
         public void onClick(View v) {
             final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             if(!messageEditText.getText().equals("")){
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                String userID = mAuth.getUid();
 
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                        String userID = mAuth.getUid();
-                        String userName = dataSnapshot.child("users").child(userID).child("name").getValue(String.class);
-                        String profilePictureUrl = dataSnapshot.child("users").child(userID).child("profilePictureUrl").getValue(String.class);
+                String stringDate = getIntent().getStringExtra("date");
+                DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                Date date =null;
+                try {
+                    date=dateFormat.parse(stringDate);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+                    int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
 
-                        String stringDate = getIntent().getStringExtra("date");
-                        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-                        Date date =null;
-                        try {
-                            date=dateFormat.parse(stringDate);
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.setTime(date);
-                            int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
+                    Message message = new Message(messageEditText.getText().toString(), stringDate, userID);
 
-                            Message message = new Message(messageEditText.getText().toString(), stringDate, userName, userID, profilePictureUrl);
-
-                            SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
-                            String databaseDate = databaseDateFormat.format(date);
-                            String course = getIntent().getStringExtra("course");
-                            mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek)).push().setValue(message);
-                            messageEditText.setText("");
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
+                    SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
+                    String databaseDate = databaseDateFormat.format(date);
+                    String course = getIntent().getStringExtra("course");
+                    mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek)).push().setValue(message);
+                    messageEditText.setText("");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
     };

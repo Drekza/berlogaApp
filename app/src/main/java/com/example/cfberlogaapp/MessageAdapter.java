@@ -65,15 +65,9 @@ public class MessageAdapter extends BaseAdapter {
             TextView messageTextView = convertView.findViewById(R.id.messageTextView);
             TextView userNameTextView = convertView.findViewById(R.id.userNameTextView);
             final RoundedImageView userImageView = convertView.findViewById(R.id.userPic);
-            StorageReference storageReference =FirebaseStorage.getInstance().getReferenceFromUrl(message.getProfilePictureUrl());
-            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Glide.with(context).load(uri).into(userImageView);
-                }
-            });
+            message.setImageViewWithProfilePicture(context, userImageView);
             messageTextView.setText(message.getMessageText());
-            userNameTextView.setText(message.getUsersName());
+            message.setTextViewWithUserName(userNameTextView);
         }
         return convertView;
 
