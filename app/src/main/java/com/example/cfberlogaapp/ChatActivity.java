@@ -104,13 +104,12 @@ public class ChatActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         try{
             Date date = dateFormat.parse(stringDate);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
+            SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
+            String databaseDate = databaseDateFormat.format(date);
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             String course = getIntent().getStringExtra("course");
-            Query mQuery = mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek));
+            Query mQuery = mDatabase.child("chats").child(course).child(databaseDate);
             mQuery.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

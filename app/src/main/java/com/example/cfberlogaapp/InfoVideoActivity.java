@@ -48,7 +48,6 @@ public class InfoVideoActivity extends AppCompatActivity {
                 @Override
                 public void onReady(@NotNull YouTubePlayer youTubePlayer) {
                     youTubePlayer.loadVideo(videoId, 0);
-                    //https://www.youtube.com/watch?v=V2hlQkVJZhE
                 }
             });
         }
