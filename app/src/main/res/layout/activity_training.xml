@@ -61,12 +61,21 @@
     </ScrollView>
 
     <Button
-        android:layout_width="wrap_content"
         android:id="@+id/chatBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ЧАТ"
-        app:layout_constraintTop_toBottomOf="@id/progScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/sdelalBtn"
+        app:layout_constraintTop_toBottomOf="@id/progScrollView" />
+
+    <Button
+        android:id="@+id/sdelalBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сделал"
+        app:layout_constraintEnd_toEndOf="@id/chatBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/progScrollView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

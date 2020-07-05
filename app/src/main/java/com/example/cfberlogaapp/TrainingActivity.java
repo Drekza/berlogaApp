@@ -40,6 +40,7 @@ public class TrainingActivity extends AppCompatActivity {
     private String exrszName;
     private ImageButton backBtn;
     private Button chatBtn;
+    private Button sdelalBtn;
 
 
     @Override
@@ -53,6 +54,8 @@ public class TrainingActivity extends AppCompatActivity {
         backBtn.setOnClickListener(onBackBtnClicked);
         chatBtn = findViewById(R.id.chatBtn);
         chatBtn.setOnClickListener(onChatBtnClicked);
+        sdelalBtn = findViewById(R.id.sdelalBtn);
+        sdelalBtn.setOnClickListener(sdelalBtnClick);
         getTrainingProgramm();
     }
 
@@ -279,6 +282,29 @@ public class TrainingActivity extends AppCompatActivity {
 
         return spannableProg;
     }
+
+    private Button.OnClickListener sdelalBtnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            try {
+                final DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
+                final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                final String dateString = getIntent().getStringExtra("date");
+                Date date= null;
+                date = new SimpleDateFormat("dd.MM.yyyy").parse(dateString);
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+                String newDate=sdf.format(date);
+                final String course = getIntent().getStringExtra("course");
+                mDatabase.child("users").child(mAuth.getUid()).child("CompletedExrs").child(course).child(newDate).setValue("true");
+
+                Toast.makeText(v.getContext(), "Завершил тренировку :rage:", Toast.LENGTH_SHORT).show();
+                
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     private ImageButton.OnClickListener onBackBtnClicked = new View.OnClickListener() {
         @Override
