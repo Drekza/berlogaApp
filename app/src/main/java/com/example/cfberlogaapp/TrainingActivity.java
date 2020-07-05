@@ -60,15 +60,17 @@ public class TrainingActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             String date = getIntent().getStringExtra("date");
+            String course = getIntent().getStringExtra("course");
             Intent intent = new Intent(TrainingActivity.this, ChatActivity.class);
             intent.putExtra("date", date);
-            intent.putExtra("course", "MassGain");
+            intent.putExtra("course", course);
             startActivity(intent);
         }
     };
 
     private void getTrainingProgramm(){
         final String dateString = getIntent().getStringExtra("date");
+        final String course = getIntent().getStringExtra("course");
         dateTextView.setText(dateString);
 
         final DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
@@ -98,7 +100,7 @@ public class TrainingActivity extends AppCompatActivity {
                                 Date date=new SimpleDateFormat("dd.MM.yyyy").parse(dateString);
                                 SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
                                 String newDate=sdf.format(date);
-                                String trainingProgramm=dataSnapshot.child("trainingProgramms").child("MassGain").child(newDate).getValue(String.class);
+                                String trainingProgramm=dataSnapshot.child("trainingProgramms").child(course).child(newDate).getValue(String.class);
                                 progTextView.setMovementMethod(new LinkMovementMethod());
                                 progTextView.setText(convertText(trainingProgramm, userMaxes));
 

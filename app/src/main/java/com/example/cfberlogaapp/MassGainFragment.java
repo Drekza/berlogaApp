@@ -118,6 +118,7 @@ public class MassGainFragment extends Fragment {
                         String date = dateTextView.getText().toString();
                         Intent intent = new Intent(getContext(), TrainingActivity.class);
                         intent.putExtra("date", date);
+                        intent.putExtra("course", "MassGain");
                         startActivity(intent);
                     }
                 });

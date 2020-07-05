@@ -91,6 +91,7 @@ public class ChatActivity extends AppCompatActivity {
                     String course = getIntent().getStringExtra("course");
                     mDatabase.child("chats").child(course).child(databaseDate).push().setValue(message);
                     messageEditText.setText("");
+                    listView.setSelection(listView.getCount() - 1);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
