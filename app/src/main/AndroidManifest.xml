@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ChatActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden"></activity>
         <activity
             android:name=".TrainingActivity"
             android:theme="@style/AppTheme.NoActionBar" />

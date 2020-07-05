@@ -35,18 +35,23 @@ public class InfoVideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_video);
         String videoUrl = getIntent().getStringExtra("videoUrl");
-        Matcher videoIdMatcher =Pattern.compile("(.*?)\\?v=(.*?)").matcher(videoUrl);
 
-        if(videoIdMatcher.find()){
-            String videoId = videoIdMatcher.group(2);
+        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed%\u200C\u200B2F|youtu.be%2F|%2Fv%2F)[^#\\&\\?\\n]*";
+
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(videoUrl); //url is youtube url for which you want to extract the id.
+        if (matcher.find()) {
+            final String videoId = matcher.group();
             final YouTubePlayerView videoView = findViewById(R.id.videoView);
             getLifecycle().addObserver(videoView);
             videoView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                 @Override
                 public void onReady(@NotNull YouTubePlayer youTubePlayer) {
-                    youTubePlayer.loadVideo("KRntP-q_R9s", 0);
+                    youTubePlayer.loadVideo(videoId, 0);
+                    //https://www.youtube.com/watch?v=V2hlQkVJZhE
                 }
             });
         }
+
     }
 }

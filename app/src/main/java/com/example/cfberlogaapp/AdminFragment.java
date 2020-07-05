@@ -348,7 +348,6 @@ public class AdminFragment<string> extends Fragment {
         saveProgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "PENS", Toast.LENGTH_SHORT).show();
                 Date date =null;
                 try {
                     date=dateFormat.parse(dateTextView.getText().toString());

@@ -71,7 +71,7 @@ public class ChatActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            if(!messageEditText.getText().equals("")){
+            if(!messageEditText.getText().toString().trim().equals("")){
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String userID = mAuth.getUid();
 
@@ -89,7 +89,7 @@ public class ChatActivity extends AppCompatActivity {
                     SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
                     String databaseDate = databaseDateFormat.format(date);
                     String course = getIntent().getStringExtra("course");
-                    mDatabase.child("chats").child(course).child(String.valueOf(dayOfWeek)).push().setValue(message);
+                    mDatabase.child("chats").child(course).child(databaseDate).push().setValue(message);
                     messageEditText.setText("");
                 } catch (ParseException e) {
                     e.printStackTrace();
