@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ChatActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboardHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"></activity>
         <activity
             android:name=".TrainingActivity"
             android:theme="@style/AppTheme.NoActionBar" />

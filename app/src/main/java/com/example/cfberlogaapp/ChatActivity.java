@@ -3,8 +3,11 @@ package com.example.cfberlogaapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.media.Image;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -30,6 +33,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +42,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private EditText messageEditText;
     private ListView listView;
+    private RecyclerView chatRecycleView;
+    private RecyclerView.LayoutManager layoutManager;
     private ImageButton sendMessageBtn;
     private MessageAdapter messageAdapter;
 
@@ -48,11 +54,28 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         messageEditText = findViewById(R.id.messageEditText);
-        listView = findViewById(R.id.chatListView);
+//        listView = findViewById(R.id.chatListView);
+
+        chatRecycleView = findViewById(R.id.chatRecyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        chatRecycleView.setLayoutManager(layoutManager);
+
         sendMessageBtn = findViewById(R.id.sendMessageBtn);
         sendMessageBtn.setOnClickListener(onSendMessageClicked);
+
+
         messageAdapter = new MessageAdapter(this);
-        listView.setAdapter(messageAdapter);
+        chatRecycleView.setAdapter(messageAdapter);
+
+        chatRecycleView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if(bottom < oldBottom){
+                    chatRecycleView.smoothScrollToPosition(messageAdapter.getItemCount());
+                }
+            }
+        });
+
         ImageButton backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(onBackBtnClicked);
         loadChat();
@@ -91,13 +114,13 @@ public class ChatActivity extends AppCompatActivity {
                     String course = getIntent().getStringExtra("course");
                     mDatabase.child("chats").child(course).child(databaseDate).push().setValue(message);
                     messageEditText.setText("");
-                    listView.setSelection(listView.getCount() - 1);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
         }
     };
+
 
 
     public void loadChat(){
@@ -116,6 +139,7 @@ public class ChatActivity extends AppCompatActivity {
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Message message = dataSnapshot.getValue(Message.class);
                     messageAdapter.addMessage(message);
+                    chatRecycleView.scrollToPosition(messageAdapter.messages.size() - 1);
                 }
 
                 @Override
