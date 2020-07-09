@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,75 +71,6 @@ public class MassGainActivity extends AppCompatActivity {
 
     private void setProgrammList(){
 
-        Query mQuery = mDatabaseReference.child("trainingProgramms").child("MassGain").limitToLast(7);
-        mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<String> dates = new ArrayList<>();
-                List<String> daysOfWeek = new ArrayList<>();
-                DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                Calendar calendar = Calendar.getInstance();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    try {
-                        Date date = dateFormat.parse(snapshot.getKey());
-                        String dateString = sdf.format(date);
-                        dates.add(dateString);
-                        calendar.setTime(date);
-                        String dayOfWeek = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, new Locale("ru", "RU"));
-                        String capitalizedDayOfWeek = dayOfWeek.substring(0, 1).toUpperCase() + dayOfWeek.substring(1);
-                        daysOfWeek.add(capitalizedDayOfWeek);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
 
-                MyAdapter adapter = new MyAdapter(MassGainActivity.this, dates, daysOfWeek);
-                listView.setAdapter(adapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TextView dateTextView = view.findViewById(R.id.dateTextView);
-                        String date = dateTextView.getText().toString();
-                        Intent intent = new Intent(MassGainActivity.this, TrainingActivity.class);
-                        intent.putExtra("date", date);
-                        startActivity(intent);
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    class MyAdapter extends ArrayAdapter<String>{
-
-        Context context;
-        List<String> dates;
-        List<String> daysOfWeek;
-
-        MyAdapter(Context context, List<String> dates, List<String> daysOfWeek){
-            super(context, R.layout.row, R.id.dateTextView, dates);
-            this.context = context;
-            this.dates = dates;
-            this.daysOfWeek = daysOfWeek;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater =(LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
-            TextView dateTextView = row.findViewById(R.id.dateTextView);
-            TextView dayOfWeekTextView = row.findViewById(R.id.dayOfWeekTextView);
-
-            dateTextView.setText(dates.get(position));
-            dayOfWeekTextView.setText(daysOfWeek.get(position));
-
-            return row;
-        }
     }
 }
