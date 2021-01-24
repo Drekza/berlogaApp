@@ -2,11 +2,15 @@ package com.example.cfberlogaapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailEditText, passEditText;
     String email, password;
     ProgressBar progressBar;
+    ConstraintLayout mainConstraint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        mainConstraint = findViewById(R.id.mainConstraint);
+        mainConstraint.setOnClickListener(onMainConstraintClicked);
     }
 
     public void onLoginBtnClicked(View view){
@@ -57,12 +64,15 @@ public class LoginActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if(user.getEmail().equals("paincsgo@yandex.ru") || user.getEmail().equals("nothingow69@gmail.com")){
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     startActivity(new Intent(LoginActivity.this, AdminBottomNavActivity.class));
                                 }else {
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     startActivity(new Intent(LoginActivity.this, DefaultBottomNavActivity.class));
                                 }
 
                             } else {
+                                progressBar.setVisibility(View.INVISIBLE);
 //                                 If sign in fails, display a message to the user.
                                 Log.e("auth", String.valueOf(task.getException()));
 
@@ -80,8 +90,9 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-            progressBar.setVisibility(View.INVISIBLE);
+
         }else{
+            progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(LoginActivity.this, "Не все поля заполнены", Toast.LENGTH_SHORT).show();
         }
 
@@ -96,4 +107,17 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, ForgotPasswordActivity.class));
     }
 
+
+    public void hideSoftKeyboard (Activity activity, View view)
+    {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+    }
+
+    private ConstraintLayout.OnClickListener onMainConstraintClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            hideSoftKeyboard(LoginActivity.this, v);
+        }
+    };
 }

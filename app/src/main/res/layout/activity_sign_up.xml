@@ -2,42 +2,84 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainConstraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:background="@drawable/login_background">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+
+    <ImageView
+        android:id="@+id/scratchLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_scratch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
 
     <EditText
+        android:background="@drawable/login_edit_text_background"
         android:id="@+id/emailEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginBottom="50dp"
-        android:ems="10"
+        android:hint="Email address"
+        android:textColor="@color/colorDetailsText"
+        android:textColorHint="@color/colorDetailsText"
+        android:padding="16dp"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/passEditText"
-        app:layout_constraintStart_toStartOf="@+id/passEditText" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/scratchLogo"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
 
     <EditText
+        android:background="@drawable/login_edit_text_background"
         android:id="@+id/passEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="225dp"
-        android:ems="10"
+        android:hint="Password"
+        android:textColor="@color/colorDetailsText"
+        android:textColorHint="@color/colorDetailsText"
+        android:padding="16dp"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:background="@drawable/login_button_background"
+        android:id="@+id/signUpBtn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
+        android:onClick="onSignUpBtnClicked"
         android:text="Зарегестрироваться"
-        app:layout_constraintEnd_toEndOf="@+id/passEditText"
-        app:layout_constraintTop_toBottomOf="@+id/passEditText"
-        android:onClick="onSignUpBtnClicked"/>
+        android:textSize="18sp"
+        android:textColor="@color/colorDetailsText"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/passEditText"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
