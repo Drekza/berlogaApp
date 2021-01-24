@@ -241,9 +241,28 @@ public class CabinetFragment extends Fragment {
                         backSquatEditText.getText().toString(), frontSquatEditText.getText().toString(), overheadEditText.getText().toString(),
                         deadliftEditText.getText().toString(), benchPressEditText.getText().toString(), pressEditText.getText().toString(),
                         pullupsEditText.getText().toString(), c2bPullUpsEditText.getText().toString(), hsPullUpsEditText.getText().toString(),
-                        ringsDipsEditText.getText().toString(), t2bEditText.getText().toString(), "gs://cfberlogaapp.appspot.com/profilePictures/defaultProfilePic.jpg");
+                        ringsDipsEditText.getText().toString(), t2bEditText.getText().toString());
 
-                mDatabase.child("users").child(userID).setValue(user);
+                mDatabase.child("users").child(userID).child("name").setValue(user.getName());
+                mDatabase.child("users").child(userID).child("backSquat").setValue(user.getBackSquat());
+                mDatabase.child("users").child(userID).child("benchPress").setValue(user.getBenchPress());
+                mDatabase.child("users").child(userID).child("biceps").setValue(user.getBiceps());
+                mDatabase.child("users").child(userID).child("c2bPullUps").setValue(user.getC2bPullUps());
+                mDatabase.child("users").child(userID).child("chest").setValue(user.getChest());
+                mDatabase.child("users").child(userID).child("deadlift").setValue(user.getDeadlift());
+                mDatabase.child("users").child(userID).child("frontSquat").setValue(user.getFrontSquat());
+                mDatabase.child("users").child(userID).child("height").setValue(user.getHeight());
+                mDatabase.child("users").child(userID).child("hip").setValue(user.getHip());
+                mDatabase.child("users").child(userID).child("hips").setValue(user.getHips());
+                mDatabase.child("users").child(userID).child("hsPullUps").setValue(user.getHsPullUps());
+                mDatabase.child("users").child(userID).child("overheadSquat").setValue(user.getOverheadSquat());
+                mDatabase.child("users").child(userID).child("press").setValue(user.getPress());
+                mDatabase.child("users").child(userID).child("pullUps").setValue(user.getPullUps());
+                mDatabase.child("users").child(userID).child("ringsDips").setValue(user.getRingsDips());
+                mDatabase.child("users").child(userID).child("shoulders").setValue(user.getShoulders());
+                mDatabase.child("users").child(userID).child("t2b").setValue(user.getT2b());
+                mDatabase.child("users").child(userID).child("waist").setValue(user.getWaist());
+                mDatabase.child("users").child(userID).child("weight").setValue(user.getWeight());
                 saveHistory();
 
             }catch (Exception ex){

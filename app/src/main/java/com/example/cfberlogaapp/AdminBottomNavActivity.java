@@ -64,6 +64,9 @@ public class AdminBottomNavActivity extends AppCompatActivity {
                 case R.id.menuAdmin:
                     selectedFragment = new AdminFragment();
                     break;
+                case R.id.menuSettings:
+                    selectedFragment = new SettingsFragment();
+                    break;
             }
             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, selectedFragment).commit();

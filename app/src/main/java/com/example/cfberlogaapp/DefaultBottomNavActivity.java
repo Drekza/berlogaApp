@@ -64,6 +64,9 @@ public class DefaultBottomNavActivity extends AppCompatActivity {
                 case R.id.menuCabinet:
                     selectedFragment = new CabinetFragment();
                     break;
+                case R.id.menuSettings:
+                    selectedFragment = new SettingsFragment();
+                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, selectedFragment).commit();
             return true;

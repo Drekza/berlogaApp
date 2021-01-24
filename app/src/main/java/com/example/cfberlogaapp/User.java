@@ -78,6 +78,29 @@ public class User {
         this.t2b=t2b;
     }
 
+    public User(String name, String weight, String height, String shoulders, String chest, String biceps, String waist, String hip, String hips, String backSquat, String frontSquat, String overheadSquat, String deadlift, String benchPress, String press, String pullUps, String c2bPullUps, String hsPullUps, String ringsDips, String t2b) {
+        this.name=name;
+        this.weight=weight;
+        this.height=height;
+        this.shoulders=shoulders;
+        this.chest=chest;
+        this.biceps=biceps;
+        this.waist=waist;
+        this.hip=hip;
+        this.hips=hips;
+        this.backSquat=backSquat;
+        this.frontSquat=frontSquat;
+        this.overheadSquat=overheadSquat;
+        this.deadlift=deadlift;
+        this.benchPress=benchPress;
+        this.press=press;
+        this.pullUps=pullUps;
+        this.c2bPullUps=c2bPullUps;
+        this.hsPullUps=hsPullUps;
+        this.ringsDips=ringsDips;
+        this.t2b=t2b;
+    }
+
     public String getName() {
         return name;
     }

@@ -223,18 +223,18 @@ public class AdminFragment<string> extends Fragment {
 
     private void loadDataIntoRichEdits(String course){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance(Locale.GERMANY);
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         final SimpleDateFormat databaseSdf = new SimpleDateFormat("yyyyMMdd");
         List<String> dates = new ArrayList<>();
         databaseDates = new ArrayList<>();
 
-
-        for(int i = 1; i <= 7; i++) {
+        for(int i = 2; i <= 8; i++) {
             calendar.set(Calendar.DAY_OF_WEEK, i);
             dates.add(sdf.format(calendar.getTime()));
             databaseDates.add(databaseSdf.format(calendar.getTime()));
         }
+
         dateTextView.setText(dates.get(0));
         dateTextView2.setText(dates.get(1));
         dateTextView3.setText(dates.get(2));

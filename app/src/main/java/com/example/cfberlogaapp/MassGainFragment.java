@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ViewUtils;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -66,6 +67,8 @@ public class MassGainFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        progressBar.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.INVISIBLE);
         setProgrammList();
     }
 
@@ -150,6 +153,7 @@ public class MassGainFragment extends Fragment {
 
                 listView.setAdapter(adapter);
                 progressBar.setVisibility(View.INVISIBLE);
+                listView.setVisibility(View.VISIBLE);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

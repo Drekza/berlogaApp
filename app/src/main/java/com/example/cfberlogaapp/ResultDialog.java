@@ -3,6 +3,9 @@ package com.example.cfberlogaapp;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,7 @@ public class ResultDialog extends AppCompatDialogFragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private EditText resultEditText;
+    private int newValue, oldValue;
 
     @NonNull
     @Override
@@ -66,38 +70,51 @@ public class ResultDialog extends AppCompatDialogFragment {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     User user  = dataSnapshot.child("users").child(mAuth.getUid()).getValue(User.class);
+                                    newValue = Integer.parseInt(resultEditText.getText().toString());
+                                    oldValue = 0;
                                     switch (exrsz) {
                                         case "backSquat":
+                                            oldValue = Integer.parseInt(user.getBackSquat());
                                             user.setBackSquat(resultEditText.getText().toString());
                                             break;
                                         case "frontSquat":
+                                            oldValue = Integer.parseInt(user.getFrontSquat());
                                             user.setFrontSquat(resultEditText.getText().toString());
                                             break;
                                         case "overheadSquat":
+                                            oldValue = Integer.parseInt(user.getOverheadSquat());
                                             user.setOverheadSquat(resultEditText.getText().toString());
                                             break;
                                         case "deadlift":
+                                            oldValue = Integer.parseInt(user.getDeadlift());
                                             user.setDeadlift(resultEditText.getText().toString());
                                             break;
                                         case "press":
+                                            oldValue = Integer.parseInt(user.getPress());
                                             user.setPress(resultEditText.getText().toString());
                                             break;
                                         case "benchPress":
+                                            oldValue = Integer.parseInt(user.getBenchPress());
                                             user.setBenchPress(resultEditText.getText().toString());
                                             break;
                                         case "pullUps":
+                                            oldValue = Integer.parseInt(user.getPullUps());
                                             user.setPullUps(resultEditText.getText().toString());
                                             break;
                                         case "c2bPullUps":
+                                            oldValue = Integer.parseInt(user.getC2bPullUps());
                                             user.setC2bPullUps(resultEditText.getText().toString());
                                             break;
                                         case "hsPullUps":
+                                            oldValue = Integer.parseInt(user.getHsPullUps());
                                             user.setHsPullUps(resultEditText.getText().toString());
                                             break;
                                         case "ringsDips":
+                                            oldValue = Integer.parseInt(user.getRingsDips());
                                             user.setRingsDips(resultEditText.getText().toString());
                                             break;
                                         case "t2b":
+                                            oldValue = Integer.parseInt(user.getT2b());
                                             user.setT2b(resultEditText.getText().toString());
                                             break;
                                         default:
@@ -111,6 +128,7 @@ public class ResultDialog extends AppCompatDialogFragment {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
                                     String currentDateText = dateFormat.format(currentDate);
                                     mDatabase.child("history").child(mAuth.getUid()).child(currentDateText).setValue(historyUser);
+
                                 }
 
                                 @Override
@@ -119,8 +137,14 @@ public class ResultDialog extends AppCompatDialogFragment {
                                 }
                             });
 
-                            mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(resultEditText.getText().toString());
-                            Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
+                         /*   Dialog personalRecordDialog = new Dialog(getActivity(), android.R.style.Theme_DeviceDefault_Dialog_NoActionBar);
+                            personalRecordDialog.setContentView(R.layout.personal_record_layout);
+                            personalRecordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+                            personalRecordDialog.setCancelable(true);
+                            personalRecordDialog.show();
+                            mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(resultEditText.getText().toString());*/
+//                            Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
+
                         }
 
                     }
