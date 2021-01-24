@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#393939</color>
+    <color name="colorPrimaryDark">#131313</color>
+
     <color name="colorAccent">#ff4747</color>
     <color name = "colorWhite">#fff</color>
-    <color name="colorGuest">#f5d142</color>
+
+    <color name="colorSecondary">#dcdcdc</color>
+    <color name="colorSecondaryDark">#aaaaaa</color>
+
+    <color name="colorTextOnPrimary">#ffffff</color>
+    <color name="colorTextOnSecondary">#000000</color>
+
+    <color name="colorDetailsText">#ccffffff</color>
+    <color name="colorDetails">#1affffff</color>
+
     <color name="gradient1">#ff4747</color>
     <color name="gradient2">#ff9999</color>
+
     <color name="buttonColor1">#f5f5f5</color>
     <color name="buttonColor2">#c2c2c2</color>
+
     <color name="lightBackground">#d1d1d1</color>
 </resources>

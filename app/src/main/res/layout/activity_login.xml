@@ -4,66 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/login_background">
 
-    <EditText
-        android:id="@+id/passEditText"
-        android:layout_width="244dp"
-        android:layout_height="0dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/emailEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
 
-    <EditText
-        android:id="@+id/emailEditText"
-        android:layout_width="241dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="200dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+
+    <ImageView
+        android:id="@+id/scratchLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_scratch"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+    <EditText
+        android:background="@drawable/login_edit_text_background"
+        android:id="@+id/emailEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Email address"
+        android:textColor="@color/colorDetailsText"
+        android:textColorHint="@color/colorDetailsText"
+        android:padding="16dp"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/scratchLogo"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+    <EditText
+        android:background="@drawable/login_edit_text_background"
+        android:id="@+id/passEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColor="@color/colorDetailsText"
+        android:textColorHint="@color/colorDetailsText"
+        android:padding="16dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
 
     <Button
+        android:background="@drawable/login_button_background"
         android:id="@+id/loginBtn"
-        android:layout_width="140sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
         android:onClick="onLoginBtnClicked"
         android:text="Войти"
+        android:textSize="18sp"
+        android:textColor="@color/colorDetailsText"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/passEditText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:clickable="false"
-        android:text="ИЛИ"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/loginBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
-
-    <Button
-        android:id="@+id/signUpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="163dp"
-        android:onClick="onSignUpBtnClicked"
-        android:text="Зарегестрироваться"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
 
     <TextView
         android:id="@+id/forgotPassText"
@@ -74,8 +89,47 @@
         android:singleLine="false"
         android:text="Забыли пароль?"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/signUpBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:textColor="@color/colorDetailsText"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        android:layout_marginTop="10dp"
+        android:focusable="true" />
+
+    <View
+        android:id="@+id/footerLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="50dp"
+        android:background="#fff" />
+
+
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Нет аккаунта? Зарегестрироваться"
+        android:textColor="@color/colorDetailsText"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:onClick="onSignUpBtnClicked"
+        app:layout_constraintTop_toBottomOf="@+id/footerLine"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
