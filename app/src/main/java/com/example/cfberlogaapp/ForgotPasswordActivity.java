@@ -3,6 +3,7 @@ package com.example.cfberlogaapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -24,12 +29,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Забыли пароль?");
         mAuth = FirebaseAuth.getInstance();
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
     }
 
     public void onSendEmailBtnClicked (View view){
         emailEditText = (EditText)findViewById(R.id.emailEditText);
         String email = emailEditText.getText().toString();
-        try {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(
                     new OnCompleteListener<Void>() {
                         @Override
@@ -39,14 +46,18 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 ForgotPasswordActivity.this.finish();
                             }
                             else{
-                                Toast.makeText(ForgotPasswordActivity.this, task.getException().getMessage().toString(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    throw task.getException();
+                                }catch(FirebaseAuthInvalidUserException e){
+                                    Toast.makeText(ForgotPasswordActivity.this, "Пользователя с такой почтой не существует", Toast.LENGTH_SHORT).show();
+                                }
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
             );
-        }catch(Exception e){
-            Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-        }
 
     }
 }

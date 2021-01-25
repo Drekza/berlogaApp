@@ -49,7 +49,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ForgotPasswordActivity"
-            android:parentActivityName=".LoginActivity" />
+            android:parentActivityName=".LoginActivity"
+            android:label="Восстановление пароля"/>
         <activity
             android:name=".SignUpActivity"
             android:parentActivityName=".LoginActivity"
