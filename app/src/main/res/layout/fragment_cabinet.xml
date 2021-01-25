@@ -3,556 +3,597 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainConstraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/login_background">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topConstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient"
+
             app:layout_constraintTop_toTopOf="parent"
             tools:context=".CabinetFragment">
 
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="24dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="24dp" />
+
+            <ImageView
+                android:id="@+id/scratchLogo"
+                android:layout_width="247dp"
+                android:layout_height="180dp"
+                android:src="@drawable/scratch"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/profilePictureView"
                 layout_constraintTop_toTopOf="parent"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:riv_oval="true" />
 
 
-            <EditText
-                android:id="@+id/nameEditText"
-                android:layout_width="wrap_content"
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/CabinetTextInputLayoutStyle"
+                android:theme="@style/CabinetTextInputLayoutStyle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:inputType="text"
-                android:maxLines="1"
-                android:text="Ваше имя"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/profilePictureView" />
+                android:hint="Имя"
+                app:layout_constraintTop_toBottomOf="@id/scratchLogo"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintEnd_toEndOf="@id/guideline2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditText"
+                    android:textColor="@color/colorDetailsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/editBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginBottom="1dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_edit"
+                android:src="@drawable/ic_add_photo"
                 app:layout_constraintBottom_toBottomOf="@id/profilePictureView"
-                app:layout_constraintStart_toEndOf="@id/profilePictureView" />
+                app:layout_constraintEnd_toEndOf="@id/profilePictureView"
+                app:layout_constraintStart_toStartOf="@id/profilePictureView"
+                app:layout_constraintTop_toTopOf="@id/profilePictureView" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
-            android:id="@+id/antropometryTextView"
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <View
+            android:id="@+id/footerLine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/topConstraint"
+            android:layout_marginBottom="50dp"
+            android:background="@color/colorDetailsText"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/antropometryTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="15dp"
             android:text="Антропометрия"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorDetailsText"
             android:textSize="26dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/topConstraint" />
+            app:layout_constraintTop_toBottomOf="@id/footerLine"/>
 
-        <EditText
-            android:id="@+id/weightEditText"
-            android:layout_width="270dp"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/weightEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Вес (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/antropometryTextView" />
+            android:hint="Вес"
+            app:suffixText="См"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/antropometryTextView"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_history">
 
-        <ImageButton
-            android:id="@+id/weightHistoryBtn"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/weightEditText"
+                android:textColor="@color/colorDetailsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/heightEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/weightEditText"
-            app:layout_constraintStart_toEndOf="@id/weightEditText" />
+            android:hint="Рост"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/weightEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/heightEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <EditText
-            android:id="@+id/heightEditText"
-            android:layout_width="270dp"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/shouldersEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Рост (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/weightEditText" />
+            android:hint="Объем плеч"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/heightEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/shouldersEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <EditText
-            android:id="@+id/shouldersEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chestEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Объем плеч (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/heightEditText" />
+            android:hint="Объем груди"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/shouldersEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/shouldersHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/shouldersEditText"
-            app:layout_constraintStart_toEndOf="@id/shouldersEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/chestEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/chestEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Объем груди (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shouldersEditText" />
 
-        <ImageButton
-            android:id="@+id/chestHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/chestEditText"
-            app:layout_constraintStart_toEndOf="@id/chestEditText" />
 
-        <EditText
-            android:id="@+id/bicepsEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/bicepsEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Объем бицепса (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chestEditText" />
+            android:hint="Объем бицепса"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/chestEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/bicepsHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/bicepsEditText"
-            app:layout_constraintStart_toEndOf="@id/bicepsEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bicepsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/waistEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Объем талии (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bicepsEditText" />
 
-        <ImageButton
-            android:id="@+id/waistHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/waistEditText"
-            app:layout_constraintStart_toEndOf="@id/waistEditText" />
 
-        <EditText
-            android:id="@+id/hipEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/waistEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Объем бедра (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/waistEditText" />
+            android:hint="Объем талии"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/bicepsEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/hipHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/hipEditText"
-            app:layout_constraintStart_toEndOf="@id/hipEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/waistEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/hipsEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Объем бедер (см)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hipEditText" />
 
-        <ImageButton
-            android:id="@+id/hipsHistoryBtn"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hipEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/hipsEditText"
-            app:layout_constraintStart_toEndOf="@id/hipsEditText" />
+            android:hint="Объем бедра"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/waistEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hipEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hipsEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Объем бедер"
+            app:suffixText="См"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/hipEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hipsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <TextView
             android:id="@+id/maximumsTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:text="Максимумы"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorDetailsText"
             android:textSize="26dp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hipsEditText" />
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/hipsEditTextLayout" />
 
-        <EditText
-            android:id="@+id/backSquatEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/backSquatEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Присед со штангой на спине (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/maximumsTextView" />
+            android:hint="Присед со штангой на спине"
+            app:suffixText="Кг"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/maximumsTextView">
 
-        <ImageButton
-            android:id="@+id/backSquatHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/backSquatEditText"
-            app:layout_constraintStart_toEndOf="@id/backSquatEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/backSquatEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/frontSquatEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/frontSquatEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Присед со штангой на груди (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/backSquatEditText" />
+            android:hint="Присед со штангой на груди"
+            app:suffixText="Кг"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/backSquatEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/frontSquatHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/frontSquatEditText"
-            app:layout_constraintStart_toEndOf="@id/frontSquatEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/frontSquatEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/overheadSquat"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Присед оверхед (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/frontSquatEditText" />
 
-        <ImageButton
-            android:id="@+id/overheadHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/overheadSquat"
-            app:layout_constraintStart_toEndOf="@id/overheadSquat" />
 
-        <EditText
-            android:id="@+id/deadliftEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/overheadSquatLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Становая тягя (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/overheadSquat" />
+            android:hint="Присед оверхед"
+            app:suffixText="Кг"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/frontSquatEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/deadliftHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/deadliftEditText"
-            app:layout_constraintStart_toEndOf="@id/deadliftEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/overheadSquat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/pressEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Жим стоя (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/deadliftEditText" />
 
-        <ImageButton
-            android:id="@+id/pressHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/pressEditText"
-            app:layout_constraintStart_toEndOf="@id/pressEditText" />
 
-        <EditText
-            android:id="@+id/benchPressEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deadliftEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Жим лежа (кг)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pressEditText" />
+            android:hint="Становая тягя"
+            app:suffixText="Кг"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/overheadSquatLayout">
 
-        <ImageButton
-            android:id="@+id/benchPressHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/benchPressEditText"
-            app:layout_constraintStart_toEndOf="@id/benchPressEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deadliftEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/pullupsEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Подтягивания (раз)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/benchPressEditText" />
 
-        <ImageButton
-            android:id="@+id/pullUpsHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/pullupsEditText"
-            app:layout_constraintStart_toEndOf="@id/pullupsEditText" />
 
-        <EditText
-            android:id="@+id/c2bPullupsEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pressEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Подтягивания до груди (раз)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pullupsEditText" />
+            android:hint="Жим стоя"
+            app:suffixText="Кг"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/deadliftEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/c2bHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/c2bPullupsEditText"
-            app:layout_constraintStart_toEndOf="@id/c2bPullupsEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/hsPullupsEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Отжимания в стойке на руках (раз)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/c2bPullupsEditText" />
 
-        <ImageButton
-            android:id="@+id/hsPullupsHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/hsPullupsEditText"
-            app:layout_constraintStart_toEndOf="@id/hsPullupsEditText" />
 
-        <EditText
-            android:id="@+id/ringsDipsEditText"
-            android:layout_width="270dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/benchPressEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Отжимания на кольцах (раз)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hsPullupsEditText" />
+            android:hint="Жим лежа"
+            app:suffixText="Кг"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/pressEditTextLayout">
 
-        <ImageButton
-            android:id="@+id/ringsDipsHistoryBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/ringsDipsEditText"
-            app:layout_constraintStart_toEndOf="@id/ringsDipsEditText" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/benchPressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/t2bEditText"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:hint="Носки к перекладине (раз)"
-            android:inputType="number"
-            android:maxLines="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ringsDipsEditText" />
 
-        <ImageButton
-            android:id="@+id/t2bHistoryBtn"
-            android:layout_width="wrap_content"
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pullupsEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_history"
-            app:layout_constraintBottom_toBottomOf="@id/t2bEditText"
-            app:layout_constraintStart_toEndOf="@id/t2bEditText" />
+            android:hint="Подтягивания"
+            app:suffixText="Раз"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/benchPressEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pullupsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/c2bPullupsEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Подтягивания до груди"
+            app:suffixText="Раз"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/pullupsEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/c2bPullupsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hsPullupsEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Отжимания в стойке на руках"
+            app:suffixText="Раз"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/c2bPullupsEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hsPullupsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ringsDipsEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Отжимания на кольцах"
+            app:suffixText="Раз"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/hsPullupsEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ringsDipsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/t2bEditTextLayout"
+            style="@style/CabinetTextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Носки к перекладине"
+            app:suffixText="Раз"
+            android:theme="@style/CabinetTextInputLayoutStyle"
+            app:endIconDrawable="@drawable/ic_history"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/ringsDipsEditTextLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/t2bEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDetailsText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
+            style="@style/OutlinedButtonStyle"
             android:id="@+id/saveChangesBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:text="Сохранить изменения"
+            android:textSize="18sp"
+            android:textColor="@color/colorDetailsText"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="@id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/t2bEditTextLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/t2bEditText" />
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
 
 
 

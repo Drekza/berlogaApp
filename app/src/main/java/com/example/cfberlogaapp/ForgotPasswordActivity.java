@@ -26,8 +26,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Забыли пароль?");
         mAuth = FirebaseAuth.getInstance();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);

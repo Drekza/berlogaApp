@@ -28,6 +28,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,10 +62,7 @@ public class CabinetFragment extends Fragment {
             hipEditText, hipsEditText, backSquatEditText, frontSquatEditText, overheadEditText, deadliftEditText,
             pressEditText, benchPressEditText, pullupsEditText, c2bPullUpsEditText, hsPullUpsEditText, ringsDipsEditText, t2bEditText;
     private ImageView profilePictureView;
-    private ImageButton editBtn, weightHistoryBtn, shouldersHistoryBtn, chestHistoryBtn, bicepsHistoryBtn, waistHistoryBtn,
-            hipHistoryBtn, hipsHistoryBtn, backSquatHistoryBtn, frontSquatHistoryBtn, overheadHistoryBtn,
-            deadliftHistoryBtn, pressHistoryBtn, benchPressHistoryBtn, pullUpsHistoryBtn, c2bHistoryBtn,
-            hsPullUpsHistoryBtn, ringsDipsHistoryBtn, t2bHistoryBtn;
+    private ImageButton editBtn;
 
     private Uri imageUri;
     private FirebaseStorage mStorage;
@@ -95,64 +93,229 @@ public class CabinetFragment extends Fragment {
         saveChangesBtn.setOnClickListener(onSaveChangesBtnClicked);
 
 
+
         profilePictureView = rootView.findViewById(R.id.profilePictureView);
         nameEditText = rootView.findViewById(R.id.nameEditText);
         weightEditText = rootView.findViewById(R.id.weightEditText);
-        heightEditText = rootView.findViewById(R.id.heightEditText);
-        shouldersEditText = rootView.findViewById(R.id.shouldersEditText);
-        chestEditText = rootView.findViewById(R.id.chestEditText);
-        bicepsEditText = rootView.findViewById(R.id.bicepsEditText);
-        waistEditText = rootView.findViewById(R.id.waistEditText);
-        hipEditText = rootView.findViewById(R.id.hipEditText);
-        hipsEditText = rootView.findViewById(R.id.hipsEditText);
-        backSquatEditText = rootView.findViewById(R.id.backSquatEditText);
-        frontSquatEditText = rootView.findViewById(R.id.frontSquatEditText);
-        overheadEditText = rootView.findViewById(R.id.overheadSquat);
-        deadliftEditText = rootView.findViewById(R.id.deadliftEditText);
-        pressEditText = rootView.findViewById(R.id.pressEditText);
-        benchPressEditText = rootView.findViewById(R.id.benchPressEditText);
-        pullupsEditText = rootView.findViewById(R.id.pullupsEditText);
-        c2bPullUpsEditText = rootView.findViewById(R.id.c2bPullupsEditText);
-        hsPullUpsEditText = rootView.findViewById(R.id.hsPullupsEditText);
-        ringsDipsEditText = rootView.findViewById(R.id.ringsDipsEditText);
-        t2bEditText = rootView.findViewById(R.id.t2bEditText);
+        TextInputLayout weightEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.weightEditTextLayout);
 
-        weightHistoryBtn = rootView.findViewById(R.id.weightHistoryBtn);
-        setOnHistoryBtnClickListener(weightHistoryBtn, "weight");
-        shouldersHistoryBtn = rootView.findViewById(R.id.shouldersHistoryBtn);
-        setOnHistoryBtnClickListener(shouldersHistoryBtn,"shoulders");
-        chestHistoryBtn = rootView.findViewById(R.id.chestHistoryBtn);
-        setOnHistoryBtnClickListener(chestHistoryBtn, "chest");
-        bicepsHistoryBtn = rootView.findViewById(R.id.bicepsHistoryBtn);
-        setOnHistoryBtnClickListener(bicepsHistoryBtn, "biceps");
-        waistHistoryBtn = rootView.findViewById(R.id.waistHistoryBtn);
-        setOnHistoryBtnClickListener(waistHistoryBtn, "waist");
-        hipHistoryBtn = rootView.findViewById(R.id.hipHistoryBtn);
-        setOnHistoryBtnClickListener(hipHistoryBtn, "hip");
-        hipsHistoryBtn = rootView.findViewById(R.id.hipsHistoryBtn);
-        setOnHistoryBtnClickListener(hipsHistoryBtn, "hips");
-        backSquatHistoryBtn = rootView.findViewById(R.id.backSquatHistoryBtn);
-        setOnHistoryBtnClickListener(backSquatHistoryBtn, "backSquat");
-        frontSquatHistoryBtn = rootView.findViewById(R.id.frontSquatHistoryBtn);
-        setOnHistoryBtnClickListener(frontSquatHistoryBtn, "frontSquat");
-        overheadHistoryBtn = rootView.findViewById(R.id.overheadHistoryBtn);
-        setOnHistoryBtnClickListener(overheadHistoryBtn, "overheadSquat");
-        deadliftHistoryBtn = rootView.findViewById(R.id.deadliftHistoryBtn);
-        setOnHistoryBtnClickListener(deadliftHistoryBtn, "deadlift");
-        pressHistoryBtn = rootView.findViewById(R.id.pressHistoryBtn);
-        setOnHistoryBtnClickListener(pressHistoryBtn, "press");
-        benchPressHistoryBtn = rootView.findViewById(R.id.benchPressHistoryBtn);
-        setOnHistoryBtnClickListener(benchPressHistoryBtn, "benchPress");
-        pullUpsHistoryBtn = rootView.findViewById(R.id.pullUpsHistoryBtn);
-        setOnHistoryBtnClickListener(pullUpsHistoryBtn, "pullUps");
-        c2bHistoryBtn = rootView.findViewById(R.id.c2bHistoryBtn);
-        setOnHistoryBtnClickListener(c2bHistoryBtn, "c2b");
-        hsPullUpsHistoryBtn = rootView.findViewById(R.id.hsPullupsHistoryBtn);
-        setOnHistoryBtnClickListener(hsPullUpsHistoryBtn, "hsPullUps");
-        ringsDipsHistoryBtn = rootView.findViewById(R.id.ringsDipsHistoryBtn);
-        setOnHistoryBtnClickListener(ringsDipsHistoryBtn, "ringsDips");
-        t2bHistoryBtn = rootView.findViewById(R.id.t2bHistoryBtn);
-        setOnHistoryBtnClickListener(t2bHistoryBtn, "t2b");
+        heightEditText = rootView.findViewById(R.id.heightEditText);
+        TextInputLayout heightEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.heightEditTextLayout);
+
+        shouldersEditText = rootView.findViewById(R.id.shouldersEditText);
+        TextInputLayout shouldersEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.shouldersEditTextLayout);
+
+        chestEditText = rootView.findViewById(R.id.chestEditText);
+        TextInputLayout chestEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.chestEditTextLayout);
+
+        bicepsEditText = rootView.findViewById(R.id.bicepsEditText);
+        TextInputLayout bicepsEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.bicepsEditTextLayout);
+
+        waistEditText = rootView.findViewById(R.id.waistEditText);
+        TextInputLayout waistEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.waistEditTextLayout);
+
+        hipEditText = rootView.findViewById(R.id.hipEditText);
+        TextInputLayout hipEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.hipEditTextLayout);
+
+        hipsEditText = rootView.findViewById(R.id.hipsEditText);
+        TextInputLayout hipsEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.hipsEditTextLayout);
+
+        backSquatEditText = rootView.findViewById(R.id.backSquatEditText);
+        TextInputLayout backSquatEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.backSquatEditTextLayout);
+
+        frontSquatEditText = rootView.findViewById(R.id.frontSquatEditText);
+        TextInputLayout frontSquatEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.frontSquatEditTextLayout);
+
+        overheadEditText = rootView.findViewById(R.id.overheadSquat);
+        TextInputLayout overheadEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.overheadSquatLayout);
+
+        deadliftEditText = rootView.findViewById(R.id.deadliftEditText);
+        TextInputLayout deadliftEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.deadliftEditTextLayout);
+
+        pressEditText = rootView.findViewById(R.id.pressEditText);
+        TextInputLayout pressEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.pressEditTextLayout);
+
+        benchPressEditText = rootView.findViewById(R.id.benchPressEditText);
+        TextInputLayout benchPressEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.benchPressEditTextLayout);
+
+        pullupsEditText = rootView.findViewById(R.id.pullupsEditText);
+        TextInputLayout pullupsEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.pullupsEditTextLayout);
+
+        c2bPullUpsEditText = rootView.findViewById(R.id.c2bPullupsEditText);
+        TextInputLayout c2bPullUpsEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.c2bPullupsEditTextLayout);
+
+        hsPullUpsEditText = rootView.findViewById(R.id.hsPullupsEditText);
+        TextInputLayout hsPullUpsEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.hsPullupsEditTextLayout);
+
+        ringsDipsEditText = rootView.findViewById(R.id.ringsDipsEditText);
+        TextInputLayout ringsDipsEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.ringsDipsEditTextLayout);
+
+        t2bEditText = rootView.findViewById(R.id.t2bEditText);
+        TextInputLayout t2bEditTextLayout = (TextInputLayout)rootView.findViewById(R.id.t2bEditTextLayout);
+
+
+        weightEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "weight");
+                startActivity(intent);
+            }
+        });
+
+
+        shouldersEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "shoulders");
+                startActivity(intent);
+            }
+        });
+
+        chestEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "chest");
+                startActivity(intent);
+            }
+        });
+
+        bicepsEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "biceps");
+                startActivity(intent);
+            }
+        });
+
+        waistEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "waist");
+                startActivity(intent);
+            }
+        });
+
+        hipEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "hip");
+                startActivity(intent);
+            }
+        });
+
+        hipsEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "hips");
+                startActivity(intent);
+            }
+        });
+
+        backSquatEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "backSquat");
+                startActivity(intent);
+            }
+        });
+
+        frontSquatEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "frontSquat");
+                startActivity(intent);
+            }
+        });
+
+        overheadEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "overheadSquat");
+                startActivity(intent);
+            }
+        });
+
+        deadliftEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "deadlift");
+                startActivity(intent);
+            }
+        });
+
+        pressEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "press");
+                startActivity(intent);
+            }
+        });
+
+        benchPressEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "benchPress");
+                startActivity(intent);
+            }
+        });
+
+        pullupsEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "pullUps");
+                startActivity(intent);
+            }
+        });
+
+        c2bPullUpsEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "c2b");
+                startActivity(intent);
+            }
+        });
+
+        hsPullUpsEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "hsPullUps");
+                startActivity(intent);
+            }
+        });
+
+        ringsDipsEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "ringsDips");
+                startActivity(intent);
+            }
+        });
+
+        t2bEditTextLayout.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryActivity.class);
+                intent.putExtra("Exercise", "t2b");
+                startActivity(intent);
+            }
+        });
 
 
         editBtn = rootView.findViewById(R.id.editBtn);
@@ -273,7 +436,7 @@ public class CabinetFragment extends Fragment {
     };
 
 
-    private void setOnHistoryBtnClickListener(final ImageButton btn, final String whatExercise){
+    private void setOnHistoryBtnClickListener(final Button btn, final String whatExercise){
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,6 +446,7 @@ public class CabinetFragment extends Fragment {
             }
         });
     }
+
 
 
     public void saveHistory(){
