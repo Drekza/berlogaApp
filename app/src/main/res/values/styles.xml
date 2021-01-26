@@ -15,6 +15,7 @@
         <item name="strokeColor">@color/colorDetailsText</item>
     </style>
 
+
     <style name="CabinetTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="colorPrimary">@color/colorSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
