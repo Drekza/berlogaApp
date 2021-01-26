@@ -82,20 +82,20 @@ public class HistoryActivity extends AppCompatActivity {
         Query myQuery = mDatabase;
         String userID = mAuth.getUid();
 
-        ValueEventListener eventListener = new ValueEventListener() {
+
+
+        mDatabase.child("history").child(mAuth.getUid()).orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String userID = mAuth.getUid();
-                Map<String, Object> userMap = (Map<String, Object>)dataSnapshot.child("history").child(userID).getValue();
                 List<String> info = new ArrayList<>();
                 final List<Date> dates = new ArrayList<>();
                 final List<String> dateStrings = new ArrayList<>();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd.MM", Locale.getDefault());
-                for(Map.Entry<String, Object> entry : userMap.entrySet()){
+                for(DataSnapshot child : dataSnapshot.getChildren()){
                     try {
-                        info.add(dataSnapshot.child("history").child(userID).child(entry.getKey()).child(Exercise).getValue(String.class));
+                        info.add(dataSnapshot.child(child.getKey()).child(Exercise).getValue(String.class));
                         DateFormat format = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-                        Date date = format.parse(entry.getKey());
+                        Date date = format.parse(child.getKey());
                         dates.add(date);
                         dateStrings.add(sdf.format(date));
 
@@ -104,10 +104,9 @@ public class HistoryActivity extends AppCompatActivity {
                                 .setTitle("Error")
                                 .setMessage(ex.getMessage()).show();
                     }
-
                 }
-                Collections.reverse(dates);
-                Collections.reverse(dateStrings);
+
+
                 try{
                     LineChart mChart = (LineChart) findViewById(R.id.lineChart);
                     List<Entry> entries = new ArrayList<>();
@@ -155,9 +154,10 @@ public class HistoryActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        };
-        mDatabase.addListenerForSingleValueEvent(eventListener);
+        });
+
     }
+
     public void onBackBtnClicked(View view){
         finish();
     }
