@@ -12,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:id="@+id/userPic"
         app:riv_oval="true"
         />
@@ -25,6 +25,7 @@
         android:text=""
         android:textSize="14sp"
         android:layout_alignTop="@id/userPic"
+        android:textColor="@color/colorDetailsText"
         android:layout_marginLeft="10dp"/>
 
     <TextView
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/messageTextView"
         android:background="@drawable/their_message"
-        android:textColor="#000"
+        android:textColor="@color/colorDetailsText"
         android:padding="10dp"
         android:textSize="18dp"
         android:layout_toRightOf="@id/userPic"

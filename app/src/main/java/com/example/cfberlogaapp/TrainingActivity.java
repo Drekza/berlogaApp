@@ -14,6 +14,7 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class TrainingActivity extends AppCompatActivity {
     private ImageButton backBtn;
     private Button chatBtn;
     private Button sdelalBtn;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -56,6 +58,8 @@ public class TrainingActivity extends AppCompatActivity {
         chatBtn.setOnClickListener(onChatBtnClicked);
         sdelalBtn = findViewById(R.id.sdelalBtn);
         sdelalBtn.setOnClickListener(sdelalBtnClick);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         getTrainingProgramm();
     }
 
@@ -106,6 +110,7 @@ public class TrainingActivity extends AppCompatActivity {
                                 String trainingProgramm=dataSnapshot.child("trainingProgramms").child(course).child(newDate).getValue(String.class);
                                 progTextView.setMovementMethod(new LinkMovementMethod());
                                 progTextView.setText(convertText(trainingProgramm, userMaxes));
+                                progressBar.setVisibility(View.GONE);
 
                             } catch (ParseException e) {
 

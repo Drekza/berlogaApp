@@ -519,7 +519,7 @@ public class CabinetFragment extends Fragment {
                                             .error(R.drawable.ic_exit)
                                             .priority(Priority.HIGH);
                                     Glide.with(getActivity()).load(uri).apply(options).into(profilePictureView);
-                                    progressBar.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.GONE);
                                 }
                             });
 

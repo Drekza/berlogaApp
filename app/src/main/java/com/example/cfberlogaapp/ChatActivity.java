@@ -18,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,12 +47,16 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ImageButton sendMessageBtn;
     private MessageAdapter messageAdapter;
+    private ProgressBar progressBar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         messageEditText = findViewById(R.id.messageEditText);
 //        listView = findViewById(R.id.chatListView);
@@ -140,6 +145,7 @@ public class ChatActivity extends AppCompatActivity {
                     Message message = dataSnapshot.getValue(Message.class);
                     messageAdapter.addMessage(message);
                     chatRecycleView.scrollToPosition(messageAdapter.messages.size() - 1);
+                    progressBar.setVisibility(View.GONE);
                 }
 
                 @Override
