@@ -204,7 +204,9 @@ public class MassGainFragment extends Fragment {
             if(trainingProgramms.get(position).isCompleted()){
                 view = layoutInflater.inflate(R.layout.completed_workout_layout, parent, false);
                 TextView dateTextView = view.findViewById(R.id.dateTextView);
+                dateTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
                 TextView dayOfWeekTextView = view.findViewById(R.id.dayOfWeekTextView);
+                dayOfWeekTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
                 ImageView completedImageView = view.findViewById(R.id.doneImageView);
                 dateTextView.setText(trainingProgramms.get(position).getDate());
                 dayOfWeekTextView.setText(trainingProgramms.get(position).getDayOfWeek());
@@ -212,7 +214,9 @@ public class MassGainFragment extends Fragment {
             }else{
                 view = layoutInflater.inflate(R.layout.completed_workout_layout, parent, false);
                 TextView dateTextView = view.findViewById(R.id.dateTextView);
+                dateTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
                 TextView dayOfWeekTextView = view.findViewById(R.id.dayOfWeekTextView);
+                dayOfWeekTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
                 ImageView completedImageView = view.findViewById(R.id.doneImageView);
                 dateTextView.setText(trainingProgramms.get(position).getDate());
                 dayOfWeekTextView.setText(trainingProgramms.get(position).getDayOfWeek());
