@@ -67,6 +67,7 @@ public class CabinetFragment extends Fragment {
     private Uri imageUri;
     private FirebaseStorage mStorage;
     private StorageReference mStorageReference;
+    private ProgressBar progressBar;
 
 
 
@@ -85,6 +86,9 @@ public class CabinetFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_cabinet, container, false);
+
+        progressBar = rootView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         mainConstraint = rootView.findViewById(R.id.mainConstraint);
         mainConstraint.setOnClickListener(onMainConstraintClicked);
@@ -324,6 +328,7 @@ public class CabinetFragment extends Fragment {
         loadData();
 
 
+
         return rootView;
     }
 
@@ -514,6 +519,7 @@ public class CabinetFragment extends Fragment {
                                             .error(R.drawable.ic_exit)
                                             .priority(Priority.HIGH);
                                     Glide.with(getActivity()).load(uri).apply(options).into(profilePictureView);
+                                    progressBar.setVisibility(View.INVISIBLE);
                                 }
                             });
 

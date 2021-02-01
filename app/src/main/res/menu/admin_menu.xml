@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/menuTraining"
+    <item
+        android:id="@+id/menuTraining"
         android:icon="@drawable/ic_training"
-        android:title="@string/training"/>
+        android:title="@string/training" />
 
     <item android:id="@+id/menuCabinet"
         android:icon="@drawable/ic_cabinet"

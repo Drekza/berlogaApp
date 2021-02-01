@@ -141,9 +141,9 @@ public class ResultDialog extends AppCompatDialogFragment {
                             personalRecordDialog.setContentView(R.layout.personal_record_layout);
                             personalRecordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
                             personalRecordDialog.setCancelable(true);
-                            personalRecordDialog.show();
-                            mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(resultEditText.getText().toString());*/
-//                            Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
+                            personalRecordDialog.show();*/
+                            mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(resultEditText.getText().toString());
+                            Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
 
                         }
 

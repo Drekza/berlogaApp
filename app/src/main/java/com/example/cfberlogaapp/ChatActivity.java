@@ -107,7 +107,7 @@ public class ChatActivity extends AppCompatActivity {
                     calendar.setTime(date);
                     int dayOfWeek = calendar.get(calendar.DAY_OF_WEEK);
 
-                    Message message = new Message(messageEditText.getText().toString(), stringDate, userID);
+                    Message message = new Message(messageEditText.getText().toString().trim(), stringDate, userID);
 
                     SimpleDateFormat databaseDateFormat = new SimpleDateFormat("yyyyMMdd");
                     String databaseDate = databaseDateFormat.format(date);
