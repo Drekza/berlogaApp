@@ -77,8 +77,9 @@
         android:textColor="@color/colorDetailsText"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/sdelalBtn"
-        app:layout_constraintTop_toBottomOf="@id/progScrollView"/>
+        app:layout_constraintTop_toBottomOf="@id/progScrollView"
+        app:layout_constraintStart_toEndOf="@id/sdelalBtn"
+        />
 
 
     <Button
@@ -90,9 +91,9 @@
         android:textSize="18sp"
         android:textColor="@color/colorDetailsText"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@id/chatBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progScrollView"/>
+        app:layout_constraintTop_toBottomOf="@id/progScrollView"
+        app:layout_constraintEnd_toStartOf="@id/chatBtn"/>
 
 
     <ProgressBar

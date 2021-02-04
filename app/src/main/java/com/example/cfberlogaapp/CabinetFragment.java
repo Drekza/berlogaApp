@@ -514,12 +514,15 @@ public class CabinetFragment extends Fragment {
                             storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    RequestOptions options = new RequestOptions()
-                                            .centerCrop()
-                                            .error(R.drawable.ic_exit)
-                                            .priority(Priority.HIGH);
-                                    Glide.with(getActivity()).load(uri).apply(options).into(profilePictureView);
-                                    progressBar.setVisibility(View.GONE);
+                                    if(isAdded()){
+                                        RequestOptions options = new RequestOptions()
+                                                .centerCrop()
+                                                .error(R.drawable.ic_exit)
+                                                .priority(Priority.HIGH);
+                                        Glide.with(getActivity()).load(uri).apply(options).into(profilePictureView);
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+
                                 }
                             });
 
