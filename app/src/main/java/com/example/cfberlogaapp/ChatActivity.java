@@ -84,6 +84,7 @@ public class ChatActivity extends AppCompatActivity {
         ImageButton backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(onBackBtnClicked);
         loadChat();
+
     }
 
     public ImageButton.OnClickListener onBackBtnClicked = new View.OnClickListener() {
@@ -168,6 +169,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 }
             });
+            progressBar.setVisibility(View.GONE);
         }catch (ParseException e){
             e.printStackTrace();
         }
