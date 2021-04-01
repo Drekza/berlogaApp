@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,16 +43,16 @@ public class ResultDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.ResultDialogStyle);
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.result_dialog_layout, null);
-        resultEditText = view.findViewById(R.id.resultEditText);
+        resultEditText = view.findViewById(R.id.exercizeEditText);
         Bundle bundle = getArguments();
         final String exrsz = bundle.getString("exrsz");
         String exrszName = bundle.getString("exrszName");
-        TextView textView = view.findViewById(R.id.textView2);
-        textView.setText(exrszName);
+        TextInputLayout textInputLayout = view.findViewById(R.id.exercizeEditTextView);
+        textInputLayout.setHint(exrszName);
         builder.setView(view)
                 .setTitle("Результат")
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
@@ -137,11 +138,7 @@ public class ResultDialog extends AppCompatDialogFragment {
                                 }
                             });
 
-                         /*   Dialog personalRecordDialog = new Dialog(getActivity(), android.R.style.Theme_DeviceDefault_Dialog_NoActionBar);
-                            personalRecordDialog.setContentView(R.layout.personal_record_layout);
-                            personalRecordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                            personalRecordDialog.setCancelable(true);
-                            personalRecordDialog.show();*/
+
                             mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(resultEditText.getText().toString());
                             Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
 

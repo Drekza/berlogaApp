@@ -44,4 +44,10 @@
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 
+    <style name="ResultDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorDetailsText</item>
+    </style>
+
+
 </resources>
