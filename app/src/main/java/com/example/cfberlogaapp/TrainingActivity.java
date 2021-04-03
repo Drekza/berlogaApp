@@ -302,7 +302,7 @@ public class TrainingActivity extends AppCompatActivity {
                 String newDate=sdf.format(date);
                 final String course = getIntent().getStringExtra("course");
                 mDatabase.child("users").child(mAuth.getUid()).child("CompletedExrs").child(course).child(newDate).setValue("true");
-                
+                Toast.makeText(TrainingActivity.this, "Тренировка выполнена! Молодец! :)", Toast.LENGTH_SHORT).show();
                 
             } catch (ParseException e) {
                 e.printStackTrace();

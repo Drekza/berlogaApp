@@ -12,5 +12,51 @@
         android:id="@+id/animationView"
         app:lottie_fileName="animation.json"/>
 
+    <TextView
+        android:id="@+id/headerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Новый рекорд!"
+        android:textColor="@color/colorDetailsText"
+        android:textSize="32sp"/>
+    <TextView
+        android:id="@+id/exerciseNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/headerTextView"
+        android:textSize="30sp"/>
+    <TextView
+        android:id="@+id/oldValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/arrowTextView"
+        android:layout_marginEnd="20dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="60sp"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:id="@+id/arrowTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="->"
+        android:textColor="@color/colorDetailsText"
+        android:textSize="60sp"/>
+    <TextView
+        android:id="@+id/newValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/arrowTextView"
+        android:layout_centerVertical="true"
+        android:textSize="60sp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/colorGreen"
+        />
+
 
 </RelativeLayout>

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +39,6 @@ public class ResultDialog extends AppCompatDialogFragment {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private EditText resultEditText;
-    private int newValue, oldValue;
 
     @NonNull
     @Override
@@ -53,6 +55,10 @@ public class ResultDialog extends AppCompatDialogFragment {
         String exrszName = bundle.getString("exrszName");
         TextInputLayout textInputLayout = view.findViewById(R.id.exercizeEditTextView);
         textInputLayout.setHint(exrszName);
+
+        final FragmentManager fm = getParentFragmentManager();
+
+
         builder.setView(view)
                 .setTitle("Результат")
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
@@ -61,87 +67,12 @@ public class ResultDialog extends AppCompatDialogFragment {
 
                     }
                 })
-                .setPositiveButton("Внести резуьтат", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Внести результат", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(resultEditText.getText().toString() != ""){
-
-
-                            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    User user  = dataSnapshot.child("users").child(mAuth.getUid()).getValue(User.class);
-                                    newValue = Integer.parseInt(resultEditText.getText().toString());
-                                    oldValue = 0;
-                                    switch (exrsz) {
-                                        case "backSquat":
-                                            oldValue = Integer.parseInt(user.getBackSquat());
-                                            user.setBackSquat(resultEditText.getText().toString());
-                                            break;
-                                        case "frontSquat":
-                                            oldValue = Integer.parseInt(user.getFrontSquat());
-                                            user.setFrontSquat(resultEditText.getText().toString());
-                                            break;
-                                        case "overheadSquat":
-                                            oldValue = Integer.parseInt(user.getOverheadSquat());
-                                            user.setOverheadSquat(resultEditText.getText().toString());
-                                            break;
-                                        case "deadlift":
-                                            oldValue = Integer.parseInt(user.getDeadlift());
-                                            user.setDeadlift(resultEditText.getText().toString());
-                                            break;
-                                        case "press":
-                                            oldValue = Integer.parseInt(user.getPress());
-                                            user.setPress(resultEditText.getText().toString());
-                                            break;
-                                        case "benchPress":
-                                            oldValue = Integer.parseInt(user.getBenchPress());
-                                            user.setBenchPress(resultEditText.getText().toString());
-                                            break;
-                                        case "pullUps":
-                                            oldValue = Integer.parseInt(user.getPullUps());
-                                            user.setPullUps(resultEditText.getText().toString());
-                                            break;
-                                        case "c2bPullUps":
-                                            oldValue = Integer.parseInt(user.getC2bPullUps());
-                                            user.setC2bPullUps(resultEditText.getText().toString());
-                                            break;
-                                        case "hsPullUps":
-                                            oldValue = Integer.parseInt(user.getHsPullUps());
-                                            user.setHsPullUps(resultEditText.getText().toString());
-                                            break;
-                                        case "ringsDips":
-                                            oldValue = Integer.parseInt(user.getRingsDips());
-                                            user.setRingsDips(resultEditText.getText().toString());
-                                            break;
-                                        case "t2b":
-                                            oldValue = Integer.parseInt(user.getT2b());
-                                            user.setT2b(resultEditText.getText().toString());
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                    User historyUser = new User(user.getWeight(),user.getShoulders(),user.getChest(),user.getBiceps(),
-                                            user.getWaist(),user.getHip(),user.getHips(),user.getBackSquat(),user.getFrontSquat(),user.getOverheadSquat(),
-                                            user.getDeadlift(),user.getBenchPress(),user.getPress(),user.getPullUps(),user.getC2bPullUps(),user.getHsPullUps(),
-                                            user.getRingsDips(),user.getT2b());
-                                    Date currentDate = new Date();
-                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-                                    String currentDateText = dateFormat.format(currentDate);
-                                    mDatabase.child("history").child(mAuth.getUid()).child(currentDateText).setValue(historyUser);
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-
-                            mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(resultEditText.getText().toString());
-                            Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
-
+                        if(!resultEditText.getText().toString().equals("")){
+                            int newValue = Integer.parseInt(resultEditText.getText().toString());
+                            uploadData(exrsz, newValue, fm);
                         }
 
                     }
@@ -150,4 +81,98 @@ public class ResultDialog extends AppCompatDialogFragment {
 
         return  builder.create();
     }
+
+    private void uploadData(final String exrsz, final int newValue, final FragmentManager fm){
+        if(resultEditText.getText().toString() != ""){
+
+            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    User user  = dataSnapshot.child("users").child(mAuth.getUid()).getValue(User.class);
+                    int oldValue = 0;
+
+                    switch (exrsz) {
+                        case "backSquat":
+                            oldValue = Integer.parseInt(user.getBackSquat());
+                            user.setBackSquat(resultEditText.getText().toString());
+                            break;
+                        case "frontSquat":
+                            oldValue = Integer.parseInt(user.getFrontSquat());
+                            user.setFrontSquat(resultEditText.getText().toString());
+                            break;
+                        case "overheadSquat":
+                            oldValue = Integer.parseInt(user.getOverheadSquat());
+                            user.setOverheadSquat(resultEditText.getText().toString());
+                            break;
+                        case "deadlift":
+                            oldValue = Integer.parseInt(user.getDeadlift());
+                            user.setDeadlift(resultEditText.getText().toString());
+                            break;
+                        case "press":
+                            oldValue = Integer.parseInt(user.getPress());
+                            user.setPress(resultEditText.getText().toString());
+                            break;
+                        case "benchPress":
+                            oldValue = Integer.parseInt(user.getBenchPress());
+                            user.setBenchPress(resultEditText.getText().toString());
+                            break;
+                        case "pullUps":
+                            oldValue = Integer.parseInt(user.getPullUps());
+                            user.setPullUps(resultEditText.getText().toString());
+                            break;
+                        case "c2bPullUps":
+                            oldValue = Integer.parseInt(user.getC2bPullUps());
+                            user.setC2bPullUps(resultEditText.getText().toString());
+                            break;
+                        case "hsPullUps":
+                            oldValue = Integer.parseInt(user.getHsPullUps());
+                            user.setHsPullUps(resultEditText.getText().toString());
+                            break;
+                        case "ringsDips":
+                            oldValue = Integer.parseInt(user.getRingsDips());
+                            user.setRingsDips(resultEditText.getText().toString());
+                            break;
+                        case "t2b":
+                            oldValue = Integer.parseInt(user.getT2b());
+                            user.setT2b(resultEditText.getText().toString());
+                            break;
+                        default:
+                            break;
+                    }
+                    User historyUser = new User(user.getWeight(),user.getShoulders(),user.getChest(),user.getBiceps(),
+                            user.getWaist(),user.getHip(),user.getHips(),user.getBackSquat(),user.getFrontSquat(),user.getOverheadSquat(),
+                            user.getDeadlift(),user.getBenchPress(),user.getPress(),user.getPullUps(),user.getC2bPullUps(),user.getHsPullUps(),
+                            user.getRingsDips(),user.getT2b());
+                    Date currentDate = new Date();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+                    String currentDateText = dateFormat.format(currentDate);
+                    mDatabase.child("history").child(mAuth.getUid()).child(currentDateText).setValue(historyUser);
+
+                    mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(String.valueOf(newValue));
+//                    Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
+
+
+                    if(oldValue < newValue){
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("OldValue", oldValue);
+                        bundle.putInt("NewValue", newValue);
+                        bundle.putString("ExerciseName", exrsz);
+                        PersonalRecordDialog prDialog = new PersonalRecordDialog();
+                        prDialog.setArguments(bundle);
+                        prDialog.show(fm, "PR dialog");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+    }
+
+
+
 }

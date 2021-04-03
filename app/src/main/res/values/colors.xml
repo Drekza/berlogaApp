@@ -7,6 +7,7 @@
 
     <color name="colorAccent">#ff4747</color>
     <color name = "colorWhite">#fff</color>
+    <color name="colorGreen">#3ccc23</color>
 
     <color name="colorSecondary">#dcdcdc</color>
     <color name="colorSecondaryDark">#aaaaaa</color>
