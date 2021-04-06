@@ -73,6 +73,7 @@ public class ResultDialog extends AppCompatDialogFragment {
                         if(!resultEditText.getText().toString().equals("")){
                             int newValue = Integer.parseInt(resultEditText.getText().toString());
                             uploadData(exrsz, newValue, fm);
+                            Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -90,51 +91,62 @@ public class ResultDialog extends AppCompatDialogFragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     User user  = dataSnapshot.child("users").child(mAuth.getUid()).getValue(User.class);
                     int oldValue = 0;
-
+                    String exerciseName = "";
                     switch (exrsz) {
                         case "backSquat":
                             oldValue = Integer.parseInt(user.getBackSquat());
                             user.setBackSquat(resultEditText.getText().toString());
+                            exerciseName = "Присед со штангой на спине";
                             break;
                         case "frontSquat":
                             oldValue = Integer.parseInt(user.getFrontSquat());
                             user.setFrontSquat(resultEditText.getText().toString());
+                            exerciseName = "Присед со штангой на груди";
                             break;
                         case "overheadSquat":
                             oldValue = Integer.parseInt(user.getOverheadSquat());
                             user.setOverheadSquat(resultEditText.getText().toString());
+                            exerciseName = "Присед оверхед";
                             break;
                         case "deadlift":
                             oldValue = Integer.parseInt(user.getDeadlift());
                             user.setDeadlift(resultEditText.getText().toString());
+                            exerciseName = "Становая тяга";
                             break;
                         case "press":
                             oldValue = Integer.parseInt(user.getPress());
                             user.setPress(resultEditText.getText().toString());
+                            exerciseName = "Жим стоя";
                             break;
                         case "benchPress":
                             oldValue = Integer.parseInt(user.getBenchPress());
                             user.setBenchPress(resultEditText.getText().toString());
+                            exerciseName = "Жим лежа";
                             break;
                         case "pullUps":
                             oldValue = Integer.parseInt(user.getPullUps());
                             user.setPullUps(resultEditText.getText().toString());
+                            exerciseName = "Подтягивания";
                             break;
                         case "c2bPullUps":
                             oldValue = Integer.parseInt(user.getC2bPullUps());
                             user.setC2bPullUps(resultEditText.getText().toString());
+                            exerciseName = "Подтягивания до груди";
                             break;
                         case "hsPullUps":
                             oldValue = Integer.parseInt(user.getHsPullUps());
                             user.setHsPullUps(resultEditText.getText().toString());
+                            exerciseName = "Отжимания в стойке на руках";
                             break;
                         case "ringsDips":
                             oldValue = Integer.parseInt(user.getRingsDips());
                             user.setRingsDips(resultEditText.getText().toString());
+                            exerciseName = "Отжимания на кольцах";
                             break;
                         case "t2b":
                             oldValue = Integer.parseInt(user.getT2b());
                             user.setT2b(resultEditText.getText().toString());
+                            exerciseName = "Носки к перекладине";
                             break;
                         default:
                             break;
@@ -149,14 +161,14 @@ public class ResultDialog extends AppCompatDialogFragment {
                     mDatabase.child("history").child(mAuth.getUid()).child(currentDateText).setValue(historyUser);
 
                     mDatabase.child("users").child(mAuth.getUid()).child(exrsz).setValue(String.valueOf(newValue));
-//                    Toast.makeText(getActivity(), "Информация успешно обновлена!", Toast.LENGTH_SHORT).show();
+
 
 
                     if(oldValue < newValue){
                         Bundle bundle = new Bundle();
                         bundle.putInt("OldValue", oldValue);
                         bundle.putInt("NewValue", newValue);
-                        bundle.putString("ExerciseName", exrsz);
+                        bundle.putString("ExerciseName", exerciseName);
                         PersonalRecordDialog prDialog = new PersonalRecordDialog();
                         prDialog.setArguments(bundle);
                         prDialog.show(fm, "PR dialog");

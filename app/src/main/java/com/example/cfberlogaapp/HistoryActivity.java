@@ -121,6 +121,11 @@ public class HistoryActivity extends AppCompatActivity {
                     }
                     mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
                     mChart.getLegend().setEnabled(false);
+                    mChart.setGridBackgroundColor(getResources().getColor(R.color.colorDetailsText));
+                    mChart.getXAxis().setTextColor(getResources().getColor(R.color.colorDetailsText));
+                    mChart.getAxisLeft().setTextColor(getResources().getColor(R.color.colorDetailsText));
+                    mChart.getAxisRight().setTextColor(getResources().getColor(R.color.colorDetailsText));
+
 
                     if(entries.size() > 1){
                         LineDataSet dataSet = new LineDataSet(entries, "");
@@ -134,6 +139,7 @@ public class HistoryActivity extends AppCompatActivity {
                         mChart.getXAxis().setTextSize(12);
                         mChart.getDescription().setEnabled(false);
                         dataSet.setValueTextSize(12);
+                        data.setValueTextColor(getResources().getColor(R.color.colorDetailsText));
                         mChart.setData(data);
                         mChart.invalidate();
                     }
