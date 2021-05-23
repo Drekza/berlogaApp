@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@drawable/login_background">
+    android:background="@drawable/login_background"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -39,7 +40,7 @@
         android:id="@+id/emailEditText"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="Email address"
+        android:hint="@string/email_address"
         android:textColor="@color/colorDetailsText"
         android:textColorHint="@color/colorDetailsText"
         android:padding="16dp"
@@ -54,7 +55,7 @@
         android:id="@+id/passEditText"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColor="@color/colorDetailsText"
         android:textColorHint="@color/colorDetailsText"
         android:padding="16dp"
@@ -71,7 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:onClick="onLoginBtnClicked"
-        android:text="Войти"
+        android:text="@string/sign_in"
         android:textSize="18sp"
         android:textColor="@color/colorDetailsText"
         android:textAllCaps="false"
@@ -89,7 +90,7 @@
         android:clickable="true"
         android:onClick="onForgotPassTextClicked"
         android:singleLine="false"
-        android:text="Забыли пароль?"
+        android:text="@string/forgot_password_question"
         android:textSize="18sp"
         android:textColor="@color/colorDetailsText"
         app:layout_constraintTop_toBottomOf="@id/loginBtn"
@@ -104,14 +105,15 @@
         android:layout_height="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="50dp"
-        android:background="#fff" />
+        android:background="#fff"
+        tools:ignore="MissingConstraints" />
 
 
     <TextView
         android:id="@+id/registerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Нет аккаунта? Зарегестрироваться"
+        android:text="@string/dont_have_an_account_question"
         android:textColor="@color/colorDetailsText"
         android:clickable="true"
         android:textSize="18sp"
@@ -119,7 +121,8 @@
         app:layout_constraintTop_toBottomOf="@+id/footerLine"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:focusable="true" />
 
 
     <ProgressBar

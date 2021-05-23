@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Тренировка дня"
+            android:text="@string/workout_of_the_day"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:textColor="@color/colorDetailsText"
@@ -70,9 +70,9 @@
     <Button
         style="@style/OutlinedButtonStyle"
         android:id="@+id/chatBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Чат"
+        android:text="@string/chat"
         android:textSize="18sp"
         android:textColor="@color/colorDetailsText"
         android:textAllCaps="false"
@@ -85,9 +85,9 @@
     <Button
         style="@style/OutlinedButtonStyle"
         android:id="@+id/sdelalBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Сделал"
+        android:text="@string/completed_workout_btn_text"
         android:textSize="18sp"
         android:textColor="@color/colorDetailsText"
         android:textAllCaps="false"

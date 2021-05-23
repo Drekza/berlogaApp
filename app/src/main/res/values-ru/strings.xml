@@ -25,4 +25,19 @@
     <string name="password_recovery_text">Введите адресс вашей электронной почты выше и мы вышлем вам письмо для восстановления пароля</string>
     <string name="password_recovery_title">Восстановление пароля</string>
     <string name="sign_up_title">Регистрация</string>
+    <string name="history_activity_title">История</string>
+    <string name="password">Пароль</string>
+    <string name="sign_in">Войти</string>
+    <string name="forgot_password_question">Забыли пароль?</string>
+    <string name="dont_have_an_account_question">Еще нет аккаунта? Зарегестрироваться</string>
+    <string name="mass_gain_label">Набор массы</string>
+    <string name="to_sign_up">Зарегестрироваться</string>
+    <string name="workout_of_the_day">Тренировка дня</string>
+    <string name="completed_workout_btn_text">Сделал</string>
+    <string name="name_text">Имя</string>
+    <string name="anthropometry_text">Антропометрия</string>
+    <string name="weight_text">Вес</string>
+    <string name="height_text">Рост</string>
+    <string name="shoulders_width">Ширина плеч</string>
+    <string name="chest_width">Объем груди</string>
 </resources>
