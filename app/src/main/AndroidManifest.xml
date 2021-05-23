@@ -56,11 +56,11 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:parentActivityName=".LoginActivity"
-            android:label="Восстановление пароля"/>
+            android:label="@string/password_recovery_title"/>
         <activity
             android:name=".SignUpActivity"
             android:parentActivityName=".LoginActivity"
-            android:label="Регистрация"/>
+            android:label="@string/sign_up_title"/>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -12,6 +12,7 @@
 
     <style name="OutlinedButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">30dp</item>
         <item name="strokeColor">@color/colorDetailsText</item>
     </style>
 

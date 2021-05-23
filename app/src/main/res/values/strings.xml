@@ -11,11 +11,18 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="cabinet">Кабинет</string>
-    <string name="training">Курсы</string>
-    <string name="settings">Настройки</string>
-    <string name="other">Другое</string>
+    <string name="cabinet">Profile page</string>
+    <string name="training">Courses</string>
+    <string name="settings">Settings</string>
+    <string name="other">Other</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="adminPanel">Панель админа</string>
+    <string name="adminPanel">Admin panel</string>
+    <string name="admin_info">Admin info</string>
+    <string name="chat">Chat</string>
+    <string name="email_address">Email address</string>
+    <string name="send_message">Send message</string>
+    <string name="password_recovery_text">Enter your email address above and we will send you message with the link for password recovery</string>
+    <string name="password_recovery_title">Password recovery</string>
+    <string name="sign_up_title">Sign up</string>
 
 </resources>
