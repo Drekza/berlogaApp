@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Набор массы"
+                android:text="@string/mass_gain_label"
                 app:layout_constraintBottom_toBottomOf="@id/topCardView"
                 android:textSize="36sp"
                 android:textColor="@color/colorWhite"
@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Сброс веса"
+                android:text="@string/weight_loss"
                 app:layout_constraintBottom_toBottomOf="@id/bottomCardView"
                 android:textSize="36sp"
                 android:textColor="@color/colorWhite"

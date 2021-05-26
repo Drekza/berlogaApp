@@ -39,7 +39,7 @@
         android:id="@+id/quitBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Выйти"
+        android:text="@string/quit"
         android:textSize="18sp"
         android:textColor="@color/colorDetailsText"
         android:textAllCaps="false"

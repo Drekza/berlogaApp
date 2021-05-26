@@ -40,4 +40,24 @@
     <string name="height_text">Рост</string>
     <string name="shoulders_width">Ширина плеч</string>
     <string name="chest_width">Объем груди</string>
+    <string name="biceps_girth">Обхват бицепса</string>
+    <string name="waist_girth">Обхват талии</string>
+    <string name="hip_girth">Обхват бедра</string>
+    <string name="hips_girth">Обхват бедер</string>
+    <string name="Peaks">Максимумы</string>
+    <string name="back_squat">Присед со штангой на спине</string>
+    <string name="front_squat">Присед со штангой на груди</string>
+    <string name="overhead_squat">Присед оверхед</string>
+    <string name="deadlift">Становая тягя</string>
+    <string name="military_press">Жим стоя</string>
+    <string name="bench_press">Жим лежа</string>
+    <string name="pull_ups">Подтягивания</string>
+    <string name="c2b_pull_ups">Подтягивания до груди</string>
+    <string name="hs_push_ups">Отжимания в стойке на руках</string>
+    <string name="rings_dips">Отжимания на кольцах</string>
+    <string name="t2b">Носки к перекладине</string>
+    <string name="save_changes">Сохранить изменения</string>
+    <string name="weight_loss">Сброс веса</string>
+    <string name="quit">Выйти</string>
+    <string name="new_record">Новый рекорд!</string>
 </resources>

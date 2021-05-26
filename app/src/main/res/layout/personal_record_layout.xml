@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Новый рекорд!"
+        android:text="@string/new_record"
         android:textColor="@color/colorDetailsText"
         android:textSize="32sp"/>
     <TextView

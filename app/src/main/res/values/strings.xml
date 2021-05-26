@@ -39,5 +39,25 @@
     <string name="height_text">Height</string>
     <string name="shoulders_width">Shoulders width</string>
     <string name="chest_width">Chest width</string>
+    <string name="biceps_girth">Bicep girth</string>
+    <string name="waist_girth">Waist girth</string>
+    <string name="hip_girth">Hip girth</string>
+    <string name="hips_girth">Hips girth</string>
+    <string name="Peaks">Peaks</string>
+    <string name="back_squat">Back squat</string>
+    <string name="front_squat">Front squat</string>
+    <string name="overhead_squat">Overhead squat</string>
+    <string name="deadlift">Deadlift</string>
+    <string name="military_press">Military press</string>
+    <string name="bench_press">Bench press</string>
+    <string name="pull_ups">Pull ups</string>
+    <string name="c2b_pull_ups">Chest to bar pull ups</string>
+    <string name="hs_push_ups">Handstand push ups</string>
+    <string name="rings_dips">Rings dips</string>
+    <string name="t2b">Toes to bar</string>
+    <string name="save_changes">Save changes</string>
+    <string name="weight_loss">Weight loss</string>
+    <string name="quit">Quit</string>
+    <string name="new_record">New record!</string>
 
 </resources>
