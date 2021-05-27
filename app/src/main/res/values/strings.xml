@@ -59,5 +59,8 @@
     <string name="weight_loss">Weight loss</string>
     <string name="quit">Quit</string>
     <string name="new_record">New record!</string>
+    <string name="kg">Kg</string>
+    <string name="cm">Cm</string>
+    <string name="times">Times</string>
 
 </resources>

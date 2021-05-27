@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -101,7 +103,7 @@ public class MassGainFragment extends Fragment {
     };
 
 
-    private void setProgrammList(){
+    private void setProgrammList(){  //Creates array of Workouts
 
         final MyAdapter adapter = new MyAdapter(getContext(), new ArrayList<TrainingProgramm>());
         Query mQuery = mDatabaseReference.child("trainingProgramms").child("MassGain").limitToLast(7);
@@ -142,13 +144,10 @@ public class MassGainFragment extends Fragment {
                             }
                         });
 
-
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                 }
-
-
 
 
                 listView.setAdapter(adapter);
@@ -197,32 +196,61 @@ public class MassGainFragment extends Fragment {
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {   //Creates list's items
             LayoutInflater layoutInflater =(LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
             View view;
 
+            view = layoutInflater.inflate(R.layout.completed_workout_layout, parent, false);
+            TextView dateTextView = view.findViewById(R.id.dateTextView);
+            dateTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
+            TextView dayOfWeekTextView = view.findViewById(R.id.dayOfWeekTextView);
+            dayOfWeekTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
+            CheckBox completedWorkoutCheckBox = view.findViewById(R.id.completedWorkoutCheckBox);
+            completedWorkoutCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    String date = trainingProgramms.get(position).getDate();
+                    changeCompletedWorkoutStatus(isChecked, date);
+                }
+            });
+
+            dateTextView.setText(trainingProgramms.get(position).getDate());
+            dayOfWeekTextView.setText(trainingProgramms.get(position).getDayOfWeek());
+
             if(trainingProgramms.get(position).isCompleted()){
-                view = layoutInflater.inflate(R.layout.completed_workout_layout, parent, false);
-                TextView dateTextView = view.findViewById(R.id.dateTextView);
-                dateTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
-                TextView dayOfWeekTextView = view.findViewById(R.id.dayOfWeekTextView);
-                dayOfWeekTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
-                ImageView completedImageView = view.findViewById(R.id.doneImageView);
-                dateTextView.setText(trainingProgramms.get(position).getDate());
-                dayOfWeekTextView.setText(trainingProgramms.get(position).getDayOfWeek());
-                completedImageView.setImageResource(R.drawable.ic_done);
-            }else{
-                view = layoutInflater.inflate(R.layout.completed_workout_layout, parent, false);
-                TextView dateTextView = view.findViewById(R.id.dateTextView);
-                dateTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
-                TextView dayOfWeekTextView = view.findViewById(R.id.dayOfWeekTextView);
-                dayOfWeekTextView.setTextColor(getResources().getColor(R.color.colorDetailsText));
-                ImageView completedImageView = view.findViewById(R.id.doneImageView);
-                dateTextView.setText(trainingProgramms.get(position).getDate());
-                dayOfWeekTextView.setText(trainingProgramms.get(position).getDayOfWeek());
-                completedImageView.setImageResource(R.drawable.ic_outline_cancel_24);
+                completedWorkoutCheckBox.setChecked(true);
             }
+            else{
+                completedWorkoutCheckBox.setChecked(false);
+            }
+
             return view;
         }
+
+        private void changeCompletedWorkoutStatus(boolean isChecked, String date){
+            String databaseDate = transformDateToDatabaseDate(date);
+            if(isChecked){
+                mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("MassGain").child(databaseDate).setValue("true");
+            }
+            else{
+                mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("MassGain").child(databaseDate).removeValue();
+            }
+        }
+
+
+        private String transformDateToDatabaseDate(String oldDate){    //Transforms default data format (DD.MM.YYYY) to format that I use in my database (yyyyMMdd)
+            String newDate = "";
+            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            try{
+                Date date = sdf.parse(oldDate);
+                newDate = dateFormat.format(date);
+            }
+            catch (Exception ex){
+                Toast.makeText(getContext(), ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+            return newDate;
+        }
+
     }
 }

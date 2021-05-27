@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
 xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@drawable/workouts_list_background"
+    android:layout_margin="5dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,6 +25,21 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:id="@+id/doneImageView"/>
+
+    <CheckBox
+        android:background="@drawable/checkbox_transparent_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:button="@drawable/custom_checkbox"
+        android:theme="@style/CustomCheckBoxStyle"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:id="@+id/completedWorkoutCheckBox"/>
 
 
 </RelativeLayout>

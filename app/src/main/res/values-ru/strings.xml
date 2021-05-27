@@ -60,4 +60,7 @@
     <string name="weight_loss">Сброс веса</string>
     <string name="quit">Выйти</string>
     <string name="new_record">Новый рекорд!</string>
+    <string name="kg">Кг</string>
+    <string name="cm">См</string>
+    <string name="times">Раз</string>
 </resources>

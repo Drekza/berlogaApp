@@ -46,6 +46,9 @@
         android:id="@+id/progressBar"/>
 
     <ListView
+        android:layout_margin="10dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="7dp"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

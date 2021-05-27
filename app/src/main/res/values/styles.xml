@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">sans-serif-light</item>
 
 
     </style>
@@ -16,6 +17,11 @@
         <item name="strokeColor">@color/colorDetailsText</item>
     </style>
 
+
+    <style name="CustomCheckBoxStyle">
+        <item name="colorAccent">@color/colorGreen</item>
+        <item name="colorOnSurface">@color/colorRed</item>
+    </style>
 
     <style name="CabinetTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="colorPrimary">@color/colorSecondary</item>
