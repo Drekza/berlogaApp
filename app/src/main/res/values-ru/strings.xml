@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CfBerlogaApp</string>
+    <string name="app_name">Berloga</string>
     <string name="title_activity_drawer">DrawerActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -63,4 +63,5 @@
     <string name="kg">Кг</string>
     <string name="cm">См</string>
     <string name="times">Раз</string>
+    <string name="losing_weight_label">Сброс веса</string>
 </resources>

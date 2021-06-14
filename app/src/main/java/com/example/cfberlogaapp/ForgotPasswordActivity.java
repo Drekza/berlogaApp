@@ -34,7 +34,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     public void onSendEmailBtnClicked (View view){
         emailEditText = (EditText)findViewById(R.id.emailEditText);
-        String email = emailEditText.getText().toString();
+        if(!emailEditText.getText().toString().equals("")){
+            String email = emailEditText.getText().toString();
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(
                     new OnCompleteListener<Void>() {
                         @Override
@@ -56,6 +57,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         }
                     }
             );
+        }else{
+            Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 }

@@ -188,7 +188,7 @@ public class TrainingActivity extends AppCompatActivity {
                     }else{
                         int startIndex = spannableProg.toString().indexOf("{" + matcher.group(1) + "=" + matcher.group(2)+"%}");
                         int endIndex = spannableProg.toString().indexOf("{" + matcher.group(1) + "=" + matcher.group(2)+"%}") + ("{" + matcher.group(1) + "=" + matcher.group(2)+"%}").length();
-                        spannableProg.replace(startIndex, endIndex, matcher.group(2));
+                        spannableProg.replace(startIndex, endIndex, matcher.group(2) + "%");
                     }
                 }
 
@@ -293,10 +293,10 @@ public class TrainingActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             try {
-                final DatabaseReference mDatabase =FirebaseDatabase.getInstance().getReference();
+                final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 final FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 final String dateString = getIntent().getStringExtra("date");
-                Date date= null;
+                Date date = null;
                 date = new SimpleDateFormat("dd.MM.yyyy").parse(dateString);
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
                 String newDate=sdf.format(date);

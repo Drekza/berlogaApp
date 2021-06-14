@@ -1,5 +1,6 @@
 package com.example.cfberlogaapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
@@ -92,12 +93,17 @@ public class Message {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String profilePictureUrl = dataSnapshot.child("users").child(userID).child("profilePictureUrl").getValue(String.class);
                 StorageReference storageReference =FirebaseStorage.getInstance().getReferenceFromUrl(profilePictureUrl);
-                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Glide.with(context).load(uri).into(imageView);
-                    }
-                });
+                try{
+                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Glide.with(context).load(uri).into(imageView);
+                        }
+                    });
+                }
+                catch (Exception e){
+
+                }
             }
 
             @Override

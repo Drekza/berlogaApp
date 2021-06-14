@@ -36,6 +36,7 @@ public class CoursesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_courses, container, false);
         massGainImageView = rootView.findViewById(R.id.naborMassiImg);
         weightLossImageView = rootView.findViewById(R.id.sbrosVesaImg);
+        weightLossImageView.setOnClickListener(onLosingWeightImageViewClicked);
         progressBar = rootView.findViewById(R.id.progressBar);
         massGainImageView.setOnClickListener(onMassGainImageViewClicked);
         progressBar.setVisibility(View.VISIBLE);
@@ -47,6 +48,13 @@ public class CoursesFragment extends Fragment {
         @Override
         public void onClick(View v) {
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MassGainFragment()).addToBackStack(null).commit();
+        }
+    };
+
+    private ImageView.OnClickListener onLosingWeightImageViewClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new LosingWeightFragment()).addToBackStack(null).commit();
         }
     };
 

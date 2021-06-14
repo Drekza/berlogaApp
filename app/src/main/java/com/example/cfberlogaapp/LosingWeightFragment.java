@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.ViewUtils;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,19 +40,19 @@ import java.util.Locale;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
+public class LosingWeightFragment extends Fragment {
 
-public class MassGainFragment extends Fragment {
 
     private ListView listView;
     private ProgressBar progressBar;
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth mAuth;
     private ImageButton backBtn;
-    private MyAdapter adapter;
+    private LosingWeightFragment.MyAdapter adapter;
 
 
 
-    public MassGainFragment() {
+    public LosingWeightFragment() {
         // Required empty public constructor
     }
 
@@ -105,8 +103,8 @@ public class MassGainFragment extends Fragment {
 
     private void setProgrammList(){  //Creates array of Workouts
 
-        final MyAdapter adapter = new MyAdapter(getContext(), new ArrayList<TrainingProgramm>());
-        Query mQuery = mDatabaseReference.child("trainingProgramms").child("MassGain").limitToLast(7);
+        final LosingWeightFragment.MyAdapter adapter = new LosingWeightFragment.MyAdapter(getContext(), new ArrayList<TrainingProgramm>());
+        Query mQuery = mDatabaseReference.child("trainingProgramms").child("LosingWeight").limitToLast(7);
         mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -125,7 +123,7 @@ public class MassGainFragment extends Fragment {
 
                         final String databaseDate = dateFormat.format(date);
 
-                        Query query = mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("MassGain");
+                        Query query = mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("LosingWeight");
                         query.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -159,7 +157,7 @@ public class MassGainFragment extends Fragment {
                         TextView dateTextView = view.findViewById(R.id.dateTextView);
                         String date = dateTextView.getText().toString();
                         Intent intent = new Intent(getContext(), TrainingActivity.class);
-                        intent.putExtra("course", "MassGain");
+                        intent.putExtra("course", "LosingWeight");
                         intent.putExtra("date", date);
                         listView.setAdapter(null);
                         startActivity(intent);
@@ -174,7 +172,7 @@ public class MassGainFragment extends Fragment {
         });
     }
 
-    class MyAdapter extends ArrayAdapter<String>{
+    class MyAdapter extends ArrayAdapter<String> {
 
         Context context;
         List<TrainingProgramm> trainingProgramms = new ArrayList<>();
@@ -231,10 +229,10 @@ public class MassGainFragment extends Fragment {
         private void changeCompletedWorkoutStatus(boolean isChecked, String date){
             String databaseDate = transformDateToDatabaseDate(date);
             if(isChecked){
-                mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("MassGain").child(databaseDate).setValue("true");
+                mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("LosingWeight").child(databaseDate).setValue("true");
             }
             else{
-                mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("MassGain").child(databaseDate).removeValue();
+                mDatabaseReference.child("users").child(mAuth.getUid()).child("CompletedExrs").child("LosingWeight").child(databaseDate).removeValue();
             }
         }
 
@@ -252,6 +250,5 @@ public class MassGainFragment extends Fragment {
             }
             return newDate;
         }
-
     }
 }
